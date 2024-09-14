@@ -1,16 +1,13 @@
 class Palindrome:
 
-    def isPalindrome(self, cadena:str) -> bool:
-        x = list(cadena)
+    def isPalindrome(s:str) -> bool:
         i = 0
-        j = len(x)-1
-        while (i!=j):
-            print(x[i],"!=", x[j],"(i,j)",i,j)
-            if x[i]!=x[j]: 
+        j = len(s)-1
+        while (i<j):
+            if s[i]!=s[j]: 
                 return False
             i+=1
             j-=1
-
         return True
 
 
@@ -19,4 +16,20 @@ class Palindrome:
             return False
         snum = str(num)
         return self.isPalindrome(snum)
+    
+    def longestPalindrome(self, s: str) -> str:
+        if self.isPalindrome(s): return s
+        longest = 0
+        longstr = ""
+        for i in range(len(s)):
+            for j in range(i+1,len(s)+1):
+                    news = s[i:j] 
+                    if self.isPalindrome(news):
+                        if len(news) > longest:
+                            longest = len(news)
+                            longstr = news  
+        return longstr
+        
+        
+
 
