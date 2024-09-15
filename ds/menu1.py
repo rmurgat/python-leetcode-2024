@@ -7,6 +7,7 @@ from solutions.LongestSubstring import LongestSubstrig
 from solutions.Zigzag import Zigzag
 from solutions.Conversion import Conversion
 from solutions.StringUtils import StringUtils
+from solutions.LinkedList1Bundle import LinkedList1Bundle
 from typing import List
 
 def printingAddTwoNumbers():
@@ -109,8 +110,16 @@ def printLongestCommonPrefix():
 
 def printValidParentheses():
     sol = StringUtils()
-
     print("Valid Parentheses: ", sol.isValidParentheses("(]"))
+
+def printMergeTwoSortedLists():
+    sol = LinkedList1Bundle()
+    lst1 = sol.createListNode([2,6,7,8,9,10])
+    lst2 = sol.createListNode([1,3,4,5,6])
+    print("ListNode: [", sol.convertListNode2String(lst1),"]")
+    print("ListNode: [", sol.convertListNode2String(lst2),"]")
+    lstm = sol.mergeTwoLists(lst1, lst2)
+    print("ListNode Merged: [", sol.convertListNode2String(lstm),"]")
 
 def main():
     while True:
@@ -148,6 +157,7 @@ def main():
             case 15: printatoi()
             case 16: printLongestCommonPrefix()
             case 17: printValidParentheses()
+            case 18: printMergeTwoSortedLists()
             case 99: return
             case _: print("Invalid Option")
 

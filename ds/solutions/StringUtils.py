@@ -1,3 +1,6 @@
+from typing import List
+
+
 class StringUtils:
 
     def myAtoi(self, s: str) -> int:
@@ -44,5 +47,11 @@ class StringUtils:
                 else:
                     return False
         return not len(stack)>0
+    
+    
+    
+    def generateParenthesis(self, n: int) -> List[str]:
+
+        return []
 
 
