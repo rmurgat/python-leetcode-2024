@@ -48,8 +48,32 @@ class StringUtils:
                     return False
         return not len(stack)>0
     
-    
-    
+    def strStr(self, haystack: str, needle: str) -> int:
+        if len(haystack)<len(needle): return -1
+        for i in range(0, len(haystack)):
+            if haystack[i] == needle[0]:
+                j=i
+                found = True
+                for x in range(0,len(needle)):
+                    if needle[x]!=haystack[j]:
+                        found=False
+                    if j==len(haystack)-1 and x<len(needle)-1: 
+                        found = False
+                        break
+                    j+=1
+                if found: 
+                    return i
+        return -1
+
+    def lengthOfLastWord(self, s: str) -> int:
+        s = s.rstrip()
+        i = len(s)-1
+        counter = 0
+        while s[i]!=' ' and i>=0 : 
+            counter+=1
+            i-=1
+        return counter
+        
     def generateParenthesis(self, n: int) -> List[str]:
 
         return []

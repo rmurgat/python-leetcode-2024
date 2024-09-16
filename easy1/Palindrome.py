@@ -9,6 +9,22 @@ class Palindrome:
             i+=1
             j-=1
         return True
+    
+    def isPalindromeAlpha(self, s:str) -> bool:
+        tmp = ""
+        s = s.lower()
+        for c in s:
+            if c.isalpha() or c.isnumeric(): tmp+=c
+        print ("tmp:"+tmp)
+        if not tmp: return True
+        i = 0
+        j = len(tmp)-1
+        while (i<j):
+            if tmp[i]!=tmp[j]: 
+                return False
+            i+=1
+            j-=1
+        return True
 
 
     def isPalindromeInt(self, num:int) -> bool:

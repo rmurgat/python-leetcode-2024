@@ -1,13 +1,14 @@
-from solutions.TwoNumbers import *
-from solutions.TwoSum import TwoSum
-from solutions.Duplicate import Duplicate
-from solutions.Palindrome import Palindrome
-from solutions.Romans import Romans
-from solutions.LongestSubstring import LongestSubstrig
-from solutions.Zigzag import Zigzag
-from solutions.Conversion import Conversion
-from solutions.StringUtils import StringUtils
-from solutions.LinkedList1Bundle import LinkedList1Bundle
+from easy1.TwoNumbers import *
+from easy1.TwoSum import TwoSum
+from easy1.Duplicate import Duplicate
+from easy1.Palindrome import Palindrome
+from easy1.Romans import Romans
+from easy1.LongestSubstring import LongestSubstrig
+from easy1.Zigzag import Zigzag
+from easy1.Conversion import Conversion
+from easy1.StringUtils import StringUtils
+from easy1.LinkedList1Bundle import LinkedList1Bundle
+from easy1.ListBundle import ListBundle
 from typing import List
 
 def printingAddTwoNumbers():
@@ -121,6 +122,40 @@ def printMergeTwoSortedLists():
     lstm = sol.mergeTwoLists(lst1, lst2)
     print("ListNode Merged: [", sol.convertListNode2String(lstm),"]")
 
+def printIsPalindromeAlpha():
+    sol = Palindrome()
+    print("isPalindromeAlpha[0P]: ", sol.isPalindromeAlpha("0P"))
+    print("isPalindromeAlpha[a]: ", sol.isPalindromeAlpha("a"))
+    print("isPalindromeAlpha[ ]: ", sol.isPalindromeAlpha(" "))
+    print("isPalindromeAlpha[A man, a plan, a canal: Panama]: ", sol.isPalindromeAlpha("A man, a plan, a canal: Panama"))
+    print("isPalindromeAlpha[race a car]: ", sol.isPalindromeAlpha("race a car"))
+
+def removingElementFromList():
+    sol = ListBundle()
+    list = [3,2,2,3]
+    res=sol.removeElement(list,3)
+    print("Removing 3 from list [3,2,2,3]: ", res, "=", list[0:res])
+
+def find1stOccurrenceString():
+    sol = StringUtils()
+    print("Find the Index of the First Occurrence in a String:")
+    print(sol.strStr("a","a"))
+
+def searchingInsertPosition():
+    sol = ListBundle()
+    print("Search insert position in List")
+    print("position:", sol.searchInsert([1,3,5,6],10))
+
+def getlengthOfLastWord():
+    sol = StringUtils()
+    print("Length of Last Word")
+    print("Length:", sol.lengthOfLastWord("a"))
+
+def printPlusOnde():
+    sol = ListBundle()
+    print("Printing Plus Onde")
+    print("value:", sol.plusOne([9]))
+
 def main():
     while True:
         print("\n[ MAIN MENU ] ")
@@ -130,12 +165,12 @@ def main():
         print("4. Remove int Duplicates (inplace)          16. Longest Common Prefix")
         print("5. Remove int Duplicates (using set)        17. Valid Parentheses")
         print("6. Remove string Duplicates (inplace)       18. Merge Tow Sorted Lists")
-        print("7. Remove string Duplicates (using set)")
-        print("8. Review if str is Palindrome") 
-        print("9. Review if num is Palindrome") 
-        print("10. Longest Palindrome in Substring")
-        print("11. Converting Roman num to Int")
-        print("12. Find max longest Substring")
+        print("7. Remove string Duplicates (using set)     19. Review if str is Palindrome Alpha")
+        print("8. Review if str is Palindrome              20. Removing Element from List") 
+        print("9. Review if num is Palindrome              21. Find index to first occurrence in String") 
+        print("10. Longest Palindrome in Substring         22. Search Insert position")
+        print("11. Converting Roman num to Int             23. Length of Last Word")
+        print("12. Find max longest Substring              24. Plus One")
         print("")
         print("99. to Exit")
         x = int(input("Type option:"))
@@ -158,6 +193,12 @@ def main():
             case 16: printLongestCommonPrefix()
             case 17: printValidParentheses()
             case 18: printMergeTwoSortedLists()
+            case 19: printIsPalindromeAlpha()
+            case 20: removingElementFromList()
+            case 21: find1stOccurrenceString()
+            case 22: searchingInsertPosition()
+            case 23: getlengthOfLastWord()
+            case 24: printPlusOnde()
             case 99: return
             case _: print("Invalid Option")
 
