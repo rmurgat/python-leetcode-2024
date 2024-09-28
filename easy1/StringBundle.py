@@ -1,7 +1,7 @@
 from typing import List
 
 
-class StringUtils:
+class StringBundle:
 
     def myAtoi(self, s: str) -> int:
         negative = 1
@@ -73,6 +73,23 @@ class StringUtils:
             counter+=1
             i-=1
         return counter
+    
+    def addBinary(self, a: str, b: str) -> str:
+        maxlength = max(len(a),len(b))
+        a = a.zfill(maxlength)
+        b = b.zfill(maxlength)
+        carry = 0
+        res =""
+        for i in range(maxlength-1,-1,-1):
+            r = carry
+            r += 1 if a[i]=='1' else 0
+            r += 1 if b[i]=='1' else 0
+            res = ('0' if r==0 or r==2 else '1') + res
+            carry = 0 if r<2 else 1
+        if carry:
+            res = "1" + res
+        return res
+
         
     def generateParenthesis(self, n: int) -> List[str]:
 

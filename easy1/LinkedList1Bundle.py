@@ -24,7 +24,24 @@ class LinkedList1Bundle:
         else:
             while lst.next : lst = lst.next
             lst.next = ListNode(val)
-    
+
+    def addLinkAtListNode(self, lst:Optional[ListNode], val1, val2):
+        nval2 = None
+        p = lst
+        while(p):
+            if p.val == val2: 
+                nval2 = p
+                break
+            p = p.next
+
+        p = lst            
+        if nval2:
+            while(p):
+                if p.val == val1: 
+                    p.next = nval2
+                    break
+                p = p.next
+
     def convertListNode2String(self, llst: ListNode):
         ll = llst
         r = ""
@@ -55,3 +72,18 @@ class LinkedList1Bundle:
         return head
             
         
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        nodes = []
+        p = head
+        bcycle = False
+        while p:
+            found = p in nodes
+            if found: return True
+            else:
+                nodes.append(p)
+            p = p.next
+        return bcycle
+    
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+        
+        return None

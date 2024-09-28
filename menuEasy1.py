@@ -6,9 +6,10 @@ from easy1.Romans import Romans
 from easy1.LongestSubstring import LongestSubstrig
 from easy1.Zigzag import Zigzag
 from easy1.Conversion import Conversion
-from easy1.StringUtils import StringUtils
+from easy1.StringBundle import StringBundle
 from easy1.LinkedList1Bundle import LinkedList1Bundle
 from easy1.ListBundle import ListBundle
+from easy1.Combinations import Combinations
 from typing import List
 
 def printingAddTwoNumbers():
@@ -22,8 +23,6 @@ def printingAddTwoNumbers():
     sum = sol.addTwoNumbers(n1, n2)
     print('[res:]')
     sol.printListNode(sum)
-
-
 
 def printingTwoSum():
     sol = TwoSum()
@@ -101,7 +100,7 @@ def printReverseInteger():
     print("reversing [1534236469:]", sol.reverseInt(1534236469))
 
 def printatoi():
-    sol = StringUtils()
+    sol = StringBundle()
     print("atoi [ ]:",  sol.myAtoi(" "))
 
 def printLongestCommonPrefix():
@@ -110,7 +109,7 @@ def printLongestCommonPrefix():
     print("longest[]: ", list, "->", sol.longestCommonPrefix(list))
 
 def printValidParentheses():
-    sol = StringUtils()
+    sol = StringBundle()
     print("Valid Parentheses: ", sol.isValidParentheses("(]"))
 
 def printMergeTwoSortedLists():
@@ -137,7 +136,7 @@ def removingElementFromList():
     print("Removing 3 from list [3,2,2,3]: ", res, "=", list[0:res])
 
 def find1stOccurrenceString():
-    sol = StringUtils()
+    sol = StringBundle()
     print("Find the Index of the First Occurrence in a String:")
     print(sol.strStr("a","a"))
 
@@ -147,7 +146,7 @@ def searchingInsertPosition():
     print("position:", sol.searchInsert([1,3,5,6],10))
 
 def getlengthOfLastWord():
-    sol = StringUtils()
+    sol = StringBundle()
     print("Length of Last Word")
     print("Length:", sol.lengthOfLastWord("a"))
 
@@ -156,18 +155,28 @@ def printPlusOnde():
     print("Printing Plus Onde")
     print("value:", sol.plusOne([9]))
 
+def printAddBinary():
+    sol = StringBundle()
+    print("Printing Add Binary")    
+    print("value:", sol.addBinary("0", "0") )
+
+def printClimbStairs():
+    sol = Combinations()
+    print("[ Printing Climbing Stairs ]")
+    print("Conbinations[35]:", sol.climbStairs(35))
+
 def main():
     while True:
         print("\n[ MAIN MENU ] ")
-        print("1. Add Two Numbers (listnode)               13. get Zigzag string")
-        print("2. Two Sum (forze brute)                    14. print Integer reversed")
+        print("1. Add Two Numbers (listnode)               13. get Zigzag string                 25. print Add Binary")
+        print("2. Two Sum (forze brute)                    14. print Integer reversed            26. Climbing Stairs")
         print("3. Two Sum (backtracking)                   15. String to Integer (atoi)")
         print("4. Remove int Duplicates (inplace)          16. Longest Common Prefix")
         print("5. Remove int Duplicates (using set)        17. Valid Parentheses")
         print("6. Remove string Duplicates (inplace)       18. Merge Tow Sorted Lists")
         print("7. Remove string Duplicates (using set)     19. Review if str is Palindrome Alpha")
         print("8. Review if str is Palindrome              20. Removing Element from List") 
-        print("9. Review if num is Palindrome              21. Find index to first occurrence in String") 
+        print("9. Review if num is Palindrome              21. Find first occurrence in String") 
         print("10. Longest Palindrome in Substring         22. Search Insert position")
         print("11. Converting Roman num to Int             23. Length of Last Word")
         print("12. Find max longest Substring              24. Plus One")
@@ -199,6 +208,8 @@ def main():
             case 22: searchingInsertPosition()
             case 23: getlengthOfLastWord()
             case 24: printPlusOnde()
+            case 25: printAddBinary()
+            case 26: printClimbStairs()
             case 99: return
             case _: print("Invalid Option")
 
