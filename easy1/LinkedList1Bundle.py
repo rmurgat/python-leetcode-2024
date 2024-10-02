@@ -87,3 +87,17 @@ class LinkedList1Bundle:
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
         
         return None
+    
+    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        n = head
+        last = None        
+        if head is None: return None
+        while n:
+            if last and n.val == last.val:
+                last.next = n.next
+            else:                
+                last = n
+            n = n.next
+        return head
+
+

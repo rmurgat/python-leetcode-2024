@@ -32,3 +32,24 @@ class ListBundle:
         if remanent:
            return [1] + digits
         return digits
+    
+    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+        mi = m - 1
+        ni = n - 1
+        right = (m+n)-1
+
+        while ni>=0:
+            if mi>=0 and nums2[ni] < nums1[mi]:
+                nums1[right] = nums1[mi]
+                mi = mi - 1
+            else:
+                nums1[right] = nums2[ni]
+                ni = ni -1
+            right = right -1
+
+
+        
+
+                
+        
+
