@@ -1,6 +1,7 @@
 from easy1.LinkedList1Bundle import LinkedList1Bundle
 from easy1.ListBundle import ListBundle
 from easy1.BTreeBundle1 import *
+import math
 
 def printLinkedListCycle():
     sol = LinkedList1Bundle()
@@ -91,6 +92,34 @@ def printBTreeMaxDepth():
     sol.prettyTree(bt1)    
     print ("Max bTree: ", sol.maxDepth(bt1))
 
+
+def convertSortedList2BSTBalanced():
+    sol = BTreeBundle1()
+    bt1 = TreeNode(1)
+    bt1.left = TreeNode(2)
+    bt1.left.left = TreeNode(3)
+    bt1.left.left.left = TreeNode(4)
+    bt1.right = TreeNode(2)
+    bt1.right.right = TreeNode(3)
+    bt1.right.right.right = TreeNode(4)
+
+    sol.prettyTree(bt1)  
+    print("Is Balanced: ", sol.isBalanced(bt1))  
+
+def insertingInOrderBinaryTree():
+    sol = BTreeBundle1()
+    lst = [3,9,20,None,None,15,7]
+    root = sol.insertInOrder(lst)
+    sol.prettyTree(root)
+
+def printDepthTree():
+    sol = BTreeBundle1()    
+    lst = [2,None,3,None,4,None,5,None,6]
+    root = sol.insertInOrder(lst)
+    sol.prettyTree(root)
+    print("min Depth:", sol.minDepth(root))
+    print("max Depth:", sol.maxDepth(root))
+
 def main():
     while True:
         print("\n[ MAIN MENU ] ")
@@ -102,6 +131,9 @@ def main():
         print("6. Same bTree")
         print("7. Symetric bTree")
         print("8. Maximus Depth in bTree")
+        print("9. Convert Sorted Array to Binary Search Tree")
+        print("10. Insert List in Order to Binary Tree")
+        print("11. Printing Depth Tree")
         print("")
         print("99. to Exit")
         x = int(input("Type option:"))
@@ -114,7 +146,8 @@ def main():
             case 6: printBTreeSameTree()
             case 7: printBTreeIsSymetric()
             case 8: printBTreeMaxDepth()
-     
-
+            case 9: convertSortedList2BSTBalanced()
+            case 10: insertingInOrderBinaryTree()
+            case 11: printDepthTree()
 
 main()

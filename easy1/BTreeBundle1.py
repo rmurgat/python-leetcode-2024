@@ -1,4 +1,5 @@
 from typing import List, Optional
+import math
 
 
 class TreeNode:
@@ -27,6 +28,28 @@ class BTreeBundle1:
                 self.insertBST(root.right, val)
             else:
                 root.right = TreeNode(val)
+
+    def insertInOrder(self, nums: List[int]) -> TreeNode:
+        if not nums:
+            return None
+
+        it = iter(nums)
+        root = TreeNode(next(it))
+        q = [root]
+        for node in q:
+            val = next(it, None)
+            if val is not None:
+                node.left = TreeNode(val)
+                q.append(node.left)
+            val = next(it, None)
+            if val is not None:
+                node.right = TreeNode(val)
+                q.append(node.right)
+        return root
+
+
+
+    
 
     def prettyTree(self, root: TreeNode, last=True, header='', side=''):
        elbow = "└──"
@@ -81,7 +104,43 @@ class BTreeBundle1:
                 return depth
             return max(maxDepthNode(node.left, depth + 1), maxDepthNode(node.right, depth + 1))
         return maxDepthNode(root,0)
+    
+    def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
+        def divide(lst:List[int]) -> Optional[TreeNode]:
+            if not lst: return None
+            last=len(lst)
+            mid = math.floor(last/2)
+            res = TreeNode(lst[mid])
+            res.left = divide(lst[0:mid])
+            res.right = divide(lst[mid+1:last])
+            return res
+        res = divide(nums)
+        return res
+    
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        def getDepth(root: Optional[TreeNode]) -> int:
+            if not root: return 0
+            left = getDepth(root.left)
+            right = getDepth(root.right)
+            if left < 0 or right < 0: return -1
+            if abs(left - right) > 1: return -1
+            return max(left, right) + 1
+        depth=getDepth(root)
+        print("depth:",depth)
+        return depth >= 0
 
-
+    def minDepth(self, root: Optional[TreeNode]) -> int:
+        if not root: return 0
+        d = []
+        def getDepths(tree: Optional[TreeNode], depth: int, d: List[int]):
+            if not tree:
+                return
+            if not tree.left and not tree.right: 
+                d.append(depth)
+                return
+            getDepths(tree.left, depth+1, d)
+            getDepths(tree.right, depth+1, d)
+        getDepths(root, 1, d)
+        return min(d) 
 
                 
