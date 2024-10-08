@@ -47,10 +47,6 @@ class BTreeBundle1:
                 q.append(node.right)
         return root
 
-
-
-    
-
     def prettyTree(self, root: TreeNode, last=True, header='', side=''):
        elbow = "└──"
        pipe = "│  "
@@ -59,6 +55,15 @@ class BTreeBundle1:
        if root is None: return
        print(header + (elbow if last else tee) + str(root.val)+("" if side=='' else "-"+side))
        if root.left: self.prettyTree(root=root.left, last=False if root.right else True, header=header + (blank if last else pipe),side="l" )
+       if root.right: self.prettyTree(root=root.right, last=True, header=header + (blank if last else pipe), side="r")    
+
+    def printPrettyTreeRight(self, root: TreeNode, last=True, header='', side=''):
+       elbow = "└──"
+       pipe = "│  "
+       tee = "├──"
+       blank = "   "
+       if root is None: return
+       print(header + (elbow if last else tee) + str(root.val)+("" if side=='' else "-"+side))
        if root.right: self.prettyTree(root=root.right, last=True, header=header + (blank if last else pipe), side="r")    
 
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
@@ -142,5 +147,76 @@ class BTreeBundle1:
             getDepths(tree.right, depth+1, d)
         getDepths(root, 1, d)
         return min(d) 
+    
+    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+        if not root:  return []        
+        self.pool = []
+        def getPathSum(root: Optional[TreeNode], tmp: List[int], target: int):
+            tmp.append(root.val)
+            if not root.left and not root.right:
+                if sum(tmp) == target:
+                    self.pool.append(tmp.copy())
+            if root.left:
+                getPathSum(root.left, tmp, target)
+            if root.right:
+                getPathSum(root.right, tmp, target)
+            tmp.pop()
+        getPathSum(root, [], targetSum)
+        return len(self.pool)>0
 
-                
+    def pathSumII(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
+        if not root:  return []        
+        self.pool = []
+        def getPathSum(root: Optional[TreeNode], tmp: List[int], target: int):
+            tmp.append(root.val)
+            if not root.left and not root.right:
+                print (tmp)
+                if sum(tmp) == target:
+                    self.pool.append(tmp.copy())
+            if root.left:
+                getPathSum(root.left, tmp, target)
+            if root.right:
+                getPathSum(root.right, tmp, target)
+            tmp.pop()
+        getPathSum(root, [], targetSum)
+        return self.pool
+    
+    def flatten(self, root: Optional[TreeNode]) -> None:
+        if not root: return
+
+        def preOrder(root:TreeNode):
+            if not root: return
+            if root.left: 
+                tmp = root.right
+                root.right = root.left
+                tmp1 = root.right
+                while tmp1.right:
+                    tmp1 = tmp1.right
+                tmp1.right = tmp
+                root.left = None
+            preOrder(root.right)            
+
+        preOrder(root)
+
+    def generateParenthesis(self, n: int) -> List[str]:
+        res = []
+        stack = []
+
+        def backtrack(open1, close1):
+            print("".join(stack))
+            if open1 == close1 == n:
+                res.append("".join(stack))
+                return
+            if open1<n:
+                stack.append("(")
+                backtrack(open1 + 1, close1)
+                stack.pop()
+            if close1 < open1:
+                stack.append(")")
+                backtrack(open1, close1 + 1)
+                stack.pop()
+        backtrack(0,0)
+        return res
+    
+
+        

@@ -47,9 +47,32 @@ class ListBundle:
                 ni = ni -1
             right = right -1
 
+    def generatePascalTriangle(self, numRows: int):
+        res = []
+        def helper(level: int):
+            tmp = []
+            lastrow = res[-1]
+            if level == numRows: 
+                return
+            for i in range(0, level+1):
+                num1 = num2 = 0
+                num1 = 0 if i==0 else lastrow[i-1]
+                num2 = 0 if i==level else lastrow[i]
+                tmp.append(num1 + num2)
+            res.append(tmp)
+            helper(level+1)  
+        res.append([1])          
+        helper(1)
+        return res
+    
+    def getRowPascalTriangle(self, rowIndex: int) -> List[int]:
+        res = []
+        comb = 1
+        for i in range(0, rowIndex+1):
+            res.append(int(comb))
+            comb = comb * (rowIndex - i) / (i + 1)
+        return res
 
-        
+    
 
-                
-        
 

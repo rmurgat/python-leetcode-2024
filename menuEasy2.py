@@ -120,6 +120,45 @@ def printDepthTree():
     print("min Depth:", sol.minDepth(root))
     print("max Depth:", sol.maxDepth(root))
 
+def printPathSum():
+    sol = BTreeBundle1()    
+    root = sol.insertInOrder([5,4,8,11,None,13,4,7,2,None,None,None,1])
+    root2 = sol.insertInOrder([5,4,8,11,None,13,4,7,2,None,None,5,1])
+    print("root tree")
+    sol.prettyTree(root)
+    print("Path Sum I", 22, " : ", sol.hasPathSum(root, 22))
+    print("root2 tree")
+    sol.prettyTree(root2)
+    print("Path Sum II", 22, " : ", sol.pathSumII(root2, 22))
+
+def printFlattenBinaryTree2LinkedList():
+    sol = BTreeBundle1() 
+    root = sol.insertInOrder([1,2,None,3,4,5])
+    print("root Tree (original)")
+    sol.prettyTree(root)    
+    sol.flatten(root)
+    print("root Tree (flatted)")
+    sol.printPrettyTreeRight(root)
+
+def printGenerateParentheses():
+    sol = BTreeBundle1()  
+    res = sol.generateParenthesis(3)
+    print("res: ", res)
+
+def printSwapNodesInPairs():
+    sol = LinkedList1Bundle()
+    head = sol.createListNode([1,2,3,4,5,6,7])
+    head = sol.swapPairs(head)
+    print("res: ", sol.convertListNode2String(head))
+
+def printPascalTriangle():
+    sol = ListBundle()
+    print("printPascalTriangle.I()")    
+    print("result:",  sol.generatePascalTriangle(5))
+    print("printPascalTriangle.II()")    
+    print("result:",  sol.getRowPascalTriangle(4))
+
+
 def main():
     while True:
         print("\n[ MAIN MENU ] ")
@@ -134,6 +173,11 @@ def main():
         print("9. Convert Sorted Array to Binary Search Tree")
         print("10. Insert List in Order to Binary Tree")
         print("11. Printing Depth Tree")
+        print("12. Path Sum I, II")
+        print("13. Flatten Binary Tree to Linked List")
+        print("14. Generate Parentheses")
+        print("15. Swap Nodes in Pairs")
+        print("16. Generate Pascal Triangle I, II")
         print("")
         print("99. to Exit")
         x = int(input("Type option:"))
@@ -149,5 +193,11 @@ def main():
             case 9: convertSortedList2BSTBalanced()
             case 10: insertingInOrderBinaryTree()
             case 11: printDepthTree()
+            case 12: printPathSum()
+            case 13: printFlattenBinaryTree2LinkedList()
+            case 14: printGenerateParentheses()
+            case 15: printSwapNodesInPairs()
+            case 16: printPascalTriangle()
+            case 99: exit()
 
 main()

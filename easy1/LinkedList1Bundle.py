@@ -100,4 +100,20 @@ class LinkedList1Bundle:
             n = n.next
         return head
 
+    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head: 
+            return None
+        if head and not head.next: 
+            return head
+        #swap
+        first = head
+        second = first.next
+        tmp = second.next
+        tmp1 = first
+        first = second
+        second = tmp1
+        first.next = second
+        second.next = tmp
+        second.next = self.swapPairs(tmp)
+        return first
 
