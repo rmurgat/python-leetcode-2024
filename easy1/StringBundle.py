@@ -91,8 +91,11 @@ class StringBundle:
         return res
 
         
-    def generateParenthesis(self, n: int) -> List[str]:
-
-        return []
-
-
+    def convertToTitle(self, columnNumber: int) -> str:
+        res = ""
+        while columnNumber > 0:
+            columnNumber = columnNumber - 1
+            remainder = columnNumber % 26
+            res+=chr(int(remainder)+ord('A'))
+            columnNumber = int(columnNumber / 26)
+        return res[::-1]

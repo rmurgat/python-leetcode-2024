@@ -1,6 +1,7 @@
-from easy1.LinkedList1Bundle import LinkedList1Bundle
+from easy1.LinkedList1Bundle import *
 from easy1.ListBundle import ListBundle
 from easy1.BTreeBundle1 import *
+from easy1.StringBundle import *
 import math
 
 def printLinkedListCycle():
@@ -12,9 +13,25 @@ def printLinkedListCycle():
 
 def printIntersection2LinkedLists():
     sol = LinkedList1Bundle()
-    la = sol.createListNode([4,1,8,4,5])
-    lb = sol.createListNode([5,6,1,8,4,5])
-    lst = sol.getIntersectionNode()
+    la = ListNode(1)
+    la.next = ListNode(9)
+    la = la.next
+    la.next = ListNode(1)
+    la = la.next 
+    intersec = la.next = ListNode(2)
+    la = la.next
+    la.next = ListNode(4)
+
+    lb = ListNode(3)
+    lb.next = intersec
+
+    res = sol.getIntersectionNode(la, lb)
+    print ("Node Intersection: ", res.val)
+    print ("rest list: [ ", end ="")
+    while res:
+        print(res.val,", ", end="")
+        res = res.next
+    print ("]")
     
 def printRemoveDuplicatesFromSortedList():
     sol = LinkedList1Bundle()
@@ -158,12 +175,20 @@ def printPascalTriangle():
     print("printPascalTriangle.II()")    
     print("result:",  sol.getRowPascalTriangle(4))
 
+def printExcelColumnTitle():
+    sol = StringBundle()
+    print("ASCII: ", sol.convertToTitle(701))
+
+def printMayorityelement():
+    sol = ListBundle()
+    print("res: ",sol.majorityElement([2,2,1,1,1,2,2]))
+
 
 def main():
     while True:
         print("\n[ MAIN MENU ] ")
         print("1. Evaluate Linked List Cycle")
-        print("2. Intersection of Two Linked Lists (pending)")
+        print("2. Intersection of Two Linked Lists")
         print("3. Remove Duplicates from Sorted List")
         print("4. Merge Lists")
         print("5. bTree Traversals")
@@ -178,12 +203,14 @@ def main():
         print("14. Generate Parentheses")
         print("15. Swap Nodes in Pairs")
         print("16. Generate Pascal Triangle I, II")
+        print("17. Excel Sheet Column Title")
+        print("18. Mayority Element in List")
         print("")
         print("99. to Exit")
         x = int(input("Type option:"))
         match x:
             case 1: printLinkedListCycle()
-            case 2: print("Intersection of Two Linked Lists (pending)")
+            case 2: printIntersection2LinkedLists()
             case 3: printRemoveDuplicatesFromSortedList()
             case 4: printListMerged()
             case 5: printBTreeInOrderTraversal()
@@ -198,6 +225,8 @@ def main():
             case 14: printGenerateParentheses()
             case 15: printSwapNodesInPairs()
             case 16: printPascalTriangle()
+            case 17: printExcelColumnTitle() 
+            case 18: printMayorityelement() 
             case 99: exit()
 
 main()

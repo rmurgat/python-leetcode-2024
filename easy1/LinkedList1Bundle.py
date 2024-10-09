@@ -85,8 +85,13 @@ class LinkedList1Bundle:
         return bcycle
     
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
-        
-        return None
+        if not headA or not headB: return None
+        a = headA
+        b = headB
+        while a != b:
+            a = headB if not a else a.next
+            b = headA if not b else b.next
+        return a
     
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
         n = head
@@ -116,4 +121,3 @@ class LinkedList1Bundle:
         second.next = tmp
         second.next = self.swapPairs(tmp)
         return first
-

@@ -1,4 +1,6 @@
+import operator
 from typing import List
+from collections import OrderedDict
 
 
 class ListBundle:
@@ -73,6 +75,14 @@ class ListBundle:
             comb = comb * (rowIndex - i) / (i + 1)
         return res
 
-    
+    def majorityElement(self, nums: List[int]) -> int:
+        d = {}
+        res = majority = 0
+        for i in nums:
+            d[i] = 1 + d.get(i,0)
+            if d[i] > majority:
+                res = i
+                majority = d[i]
+        return res
 
 
