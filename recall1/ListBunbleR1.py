@@ -189,6 +189,22 @@ class ListBundleR1:
         print("areas:", res)
         return max(res)
     
+    # 2517. https://leetcode.com/problems/maximum-tastiness-of-candy-basket
     def maximumTastinessV1(self, price: List[int], k: int) -> int:
+        res = ()
 
+        def getMaximum(price: List[int], pos: int, tmp: List[int]) -> List[int]:
+
+            # stopping recursion
+            if len(tmp)==k:
+                print ("combination", tmp)
+                # calculate smallest difference
+            
+            for i in range(pos, len(price)) :
+                tmp.append(price[i])
+                getMaximum(price, i+1, tmp)
+                tmp.pop()
+
+        getMaximum(price, 0, [])
+        
         return 0
