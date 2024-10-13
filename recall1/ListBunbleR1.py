@@ -102,7 +102,6 @@ class ListBundleR1:
             print(f"{nums[i]}, ",end="")
 
     def trapV1(self, height: List[int]) -> int:
-        # calculating volumen in each valley
         h = []
         maxLeft = 0
         maxRight = 0
@@ -120,15 +119,76 @@ class ListBundleR1:
                 res = max(res,height[j])
             return res
 
+        #starting
         for i in range(0, len(height)):
-            maxLeft = getmaxLeft(i)
-            maxRight = getmaxRight(i)
-            print(f"heigh:{height[i]} maxLeft:{maxLeft} maxRight:{maxRight}")
-            if maxLeft and maxRight:
-                area = min(maxLeft, maxRight) - height[i]
+            maxleft = getmaxLeft(i)
+            maxright = getmaxRight(i)
+            print(f"V1 heigh:{height[i]} maxLeft:{maxleft} maxRight:{maxright}")
+            if maxleft and maxright:
+                area = min(maxleft, maxright) - height[i]
                 if area>0: h.append(area)
         print("heights:", h)
         return sum(h)            
     
     def trapV2(self, height: List[int]) -> int:
+        h = []
+        maxleft = 0
+        maxright = 0
+        a = 0
+        b = len(height)-1
+        while a <= b:
+            print(f"V2 heigh.a:{height[a]} height.b:{height[b]} maxLeft:{maxleft} maxRight:{maxright}", end="")
+
+            if height[a] < height[b]:
+                if height[a] > maxleft: 
+                    maxleft = height[a]
+                elif maxleft > height[a]:
+                    areaA = maxleft - height[a]
+                    if areaA>0: 
+                        h.append(areaA)
+                        print(f" * {areaA}",end="")
+                a+=1
+            else:
+                if height[b] > maxright: 
+                    maxright = height[b]
+                elif maxright > height[b]:
+                    areaB = maxright - height[b]
+                    if areaB>0: 
+                        h.append(areaB)
+                        print(f" * {areaB}",end="")
+                b-=1
+            print()
+        print("V2. heights:", h)
+        return sum(h)
+    
+
+    def maxAreaV1(self, height: List[int]) -> int:
+        res = []
+
+        for i in range(len(height)-1):
+            for j in range(i+1, len(height)):
+                area = (j - i) * min(height[i], height[j])
+                res.append(area)
+                print(f"{i}={height[i]} {j}={height[j]} area:{area}")
+
+        print("res:", res)
+        return max(res)
+    
+    def maxAreaV2(self, height: List[int]) -> int:
+        res = []
+        a = 0
+        b = len(height)-1
+        while a<b:
+            area = (b - a) * min(height[a], height[b])
+            print(f"{a}={height[a]} {b}={height[b]} area:{area}")
+            res.append(area)
+            if height[a] < height[b]:
+                a+=1
+            else:
+                b-=1
+        print("areas:", res)
+        return max(res)
+    
+    def maximumTastinessV1(self, price: List[int], k: int) -> int:
+
         return 0

@@ -25,6 +25,7 @@ def printingTrappingRainWater():
     print("[0,1,0,2,1,0,1,3,2,1,2,1]")
     print("res.1:", sol.trapV1([0,1,0,2,1,0,1,3,2,1,2,1]))
     print("res.2:", sol.trapV2([0,1,0,2,1,0,1,3,2,1,2,1]))
+
     print("[4,2,0,3,2,5]")
     print("res.1:", sol.trapV1([4,2,0,3,2,5]))
     print("res.2:", sol.trapV2([4,2,0,3,2,5]))
@@ -34,6 +35,23 @@ def playasong():
     sol = ListBundleR1()
     res = sol.playAsong([4,8,1,2,3,4,3,4,7,9,1,2,3,54,6,7,8,9,7,5,3,2,4,9])
 
+def printingContainerWithMostWater():
+    sol = ListBundleR1()
+    print("Container With Most Water to: [4,2,0,3,2,5]")
+    res = sol.maxAreaV1([4,2,0,3,2,5])
+    print("most water: ", res)
+    res = sol.maxAreaV2([4,2,0,3,2,5])
+    print("most water: ", res)
+
+def printingMaximumTastinessCandyBasket():
+    sol = ListBundleR1()
+    print("Candy Container: [13,5,1,8,21,2]")    
+    res = sol.maximumTastinessV1([13,5,1,8,21,2],3)
+    print("result: ", res)
+
+
+
+
 
 def main():
     while True:
@@ -41,6 +59,8 @@ def main():
         print("1. Sum II values in List")
         print("2. Max Volumn between 2 index in List")
         print("3. Trapping Rain Water")
+        print("4. Container With Most Water")
+        print("5. Maximum Tastiness of Candy Basket")
         print("98. play a song")
         print("99. exit()")
         x = int(input("Type option:"))
@@ -48,6 +68,8 @@ def main():
             case 1: printingSumTwo()
             case 2: printingMaxWaterContainer()       
             case 3: printingTrappingRainWater()
+            case 4: printingContainerWithMostWater()
+            case 5: printingMaximumTastinessCandyBasket()
             case 98: playasong()
             case 99: break
 
