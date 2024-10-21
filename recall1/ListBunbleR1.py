@@ -191,20 +191,23 @@ class ListBundleR1:
     
     # 2517. https://leetcode.com/problems/maximum-tastiness-of-candy-basket
     def maximumTastinessV1(self, price: List[int], k: int) -> int:
-        res = ()
-
-        def getMaximum(price: List[int], pos: int, tmp: List[int]) -> List[int]:
-
+        res = {}
+        def getMinDifference(price: List[int], pos: int, tmp: List[int]) -> List[int]:
             # stopping recursion
             if len(tmp)==k:
-                print ("combination", tmp)
-                # calculate smallest difference
-            
+                diff = []
+                for i in range(len(tmp)-1):
+                    for j in range(i+1,len(tmp)):
+                        diff.append(abs(tmp[i]-tmp[j]))
+                mi = min(diff)
+                res[mi] = res.get(mi, 0) + 1
             for i in range(pos, len(price)) :
                 tmp.append(price[i])
-                getMaximum(price, i+1, tmp)
+                getMinDifference(price, i+1, tmp)
                 tmp.pop()
-
-        getMaximum(price, 0, [])
-        
-        return 0
+        getMinDifference(price, 0, [])
+        return max(res) 
+    
+    def maximumTastinessV2(self, price: List[int], k: int) -> int:
+        # i need to optimize this algorithm
+        pass

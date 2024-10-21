@@ -49,10 +49,6 @@ def printingMaximumTastinessCandyBasket():
     res = sol.maximumTastinessV1([13,5,1,8,21,2],3)
     print("result: ", res)
 
-
-
-
-
 def main():
     while True:
         print("\n[ MAIN MENU ] ")
