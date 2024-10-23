@@ -2,6 +2,7 @@ from easy1.LinkedList1Bundle import *
 from easy1.ListBundle import ListBundle
 from easy1.BTreeBundle1 import *
 from easy1.StringBundle import *
+from easy1.BinaryBundle import * 
 import math
 
 def printLinkedListCycle():
@@ -183,6 +184,14 @@ def printMayorityelement():
     sol = ListBundle()
     print("res: ",sol.majorityElement([2,2,1,1,1,2,2]))
 
+def printExcelSheetColumnNumber():
+    sol = StringBundle()
+    print("res: ", sol.titleToNumber("ZY") )    
+
+def printReversingBinary():
+    sol = BinaryBundle()
+    print("res: ", sol.DecimalToBinary(10))
+
 
 def main():
     while True:
@@ -205,6 +214,8 @@ def main():
         print("16. Generate Pascal Triangle I, II")
         print("17. Excel Sheet Column Title")
         print("18. Mayority Element in List")
+        print("19. Excel Sheet Column Number")
+        print("20. Integer to Binary Representation")
         print("")
         print("99. to Exit")
         x = int(input("Type option:"))
@@ -226,7 +237,9 @@ def main():
             case 15: printSwapNodesInPairs()
             case 16: printPascalTriangle()
             case 17: printExcelColumnTitle() 
-            case 18: printMayorityelement() 
+            case 18: printMayorityelement()
+            case 19: printExcelSheetColumnNumber()
+            case 20: printReversingBinary()
             case 99: exit()
 
 main()

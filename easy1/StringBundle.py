@@ -99,3 +99,12 @@ class StringBundle:
             res+=chr(int(remainder)+ord('A'))
             columnNumber = int(columnNumber / 26)
         return res[::-1]
+
+    def titleToNumber(self, columnTitle: str) -> int:
+        res = 0
+        power = len(columnTitle)-1
+        for ch in columnTitle:
+            res += (ord(ch)-64) * (26**power) 
+            power -= 1
+        return res 
+
