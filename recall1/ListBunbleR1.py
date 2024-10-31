@@ -2,6 +2,22 @@ from typing import List
 
 class ListBundleR1:
 
+    def searchBinary(self, nums: List[int], target: int) -> int:
+        a = 0
+        b = len(nums)-1
+        while a <= b:
+            m = int((b - a) / 2) + a
+            print(f"nums[{m}]:", nums[m])
+            if nums[m]==target: 
+                return m
+            elif nums[m] < target: 
+                a = m + 1
+            else:
+                b = m - 1
+        return -1
+        
+
+
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         for i in range(len(nums)):
             num2find = target - nums[i]

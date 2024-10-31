@@ -85,4 +85,151 @@ class ListBundle:
                 majority = d[i]
         return res
 
+    def maxProfit1(self, prices: List[int]) -> int:
+        maxprofit = 0
+        for i in range(len(prices)):
+            for j in range(i+1,len(prices)):
+                if prices[i]<prices[j]:
+                    profit = prices[j]-prices[i]
+                    maxprofit = max(maxprofit,profit)
+        return maxprofit
 
+    def maxProfit2(self, prices: List[int]) -> int:
+        minprice = float('inf')
+        maxprofit = 0
+        for i in range(len(prices)):
+            minprice = min (minprice, prices[i])
+            maxprofit = max(maxprofit, prices[i]-minprice)
+        return maxprofit
+
+    def singleNumber1(self, nums: List[int]) -> int:
+        dcounter = {}
+
+        for num in nums:
+            exist = dcounter.get(num, None)
+            if exist is None:
+                dcounter[num]=1
+            else:
+                dcounter[num]+=1
+        
+        for x,y in dcounter.items():
+            if y == 1: return x
+
+        return 0
+    
+    def singleNumber2(self, nums: List[int]) -> int:
+        xor = 0
+        for num in nums:
+            xor ^= num
+        return xor        
+
+    def containsDuplicate1(self, nums: List[int]) -> bool:
+        duplicated = {}
+        for num in nums:
+            exist = duplicated.get(num, None)
+            if exist is None:
+                duplicated[num]=1
+            else:
+                return True
+        return False
+
+    def containsDuplicate2(self, nums: List[int]) -> bool:
+        sorted = nums.sort()
+        for i in range(1,len(nums)):
+            if nums[i] == nums[i-1]: return True
+        return False
+    
+    def containsDuplicate3(self, nums: List[int]) -> bool:
+        myset = set(nums)
+        if len(myset) == len(nums): return False
+        return True
+
+    def containsDuplicate4(self, nums: List[int]) -> bool:
+        myset = set()
+        for num in nums:
+            if num in myset:
+                return True
+            else:
+                myset.add(num)
+        return False
+
+
+    def containsNearbyDuplicate1(self, nums: List[int], k: int) -> bool:
+        for i in range(len(nums)):
+            for j in range(i+1, len(nums)):
+                if nums[i]==nums[j]:
+                    if abs(i-j)<=k:
+                        return True
+        return False
+    
+    def containsNearbyDuplicate2(self, nums: List[int], k: int) -> bool:
+        last = len(nums)-1
+
+        for i in range(len(nums)):
+            a = i - k if k < i else 0
+            b = i + k if i + k <= last else last
+            while a<i:
+                if nums[i]==nums[a]:
+                    return True
+                a+=1
+            while b>i:
+                if nums[i]==nums[b]:
+                    return True
+                b-=1
+
+        return False             
+    
+    def containsNearbyDuplicate3(self, nums: List[int], k: int) -> bool:
+        diplicates = {}
+        for i in range(len(nums)):
+            num = nums[i]
+            if num in diplicates:
+                closeness = abs(diplicates[num] - i)
+                if closeness <= k: 
+                    return True
+            diplicates[num] = i
+        return False 
+
+    def containsNearbyAlmostDuplicate(self, nums: List[int], indexDiff: int, valueDiff: int) -> bool:
+        diplicates = {}
+        for i in range(len(nums)):
+            num = nums[i]
+            if num in diplicates:
+                closeness = abs(diplicates[num] - i)
+                if closeness <= indexDiff and abs(diplicates[num]-num) <=valueDiff: 
+                    return True
+            diplicates[num] = i
+        return False         
+    
+    def threeSum1(self, nums: List[int]) -> List[List[int]]:
+        ans = []
+        for i in range (0, len(nums)):
+            for j in range (i+1, len(nums)):
+                for k in range(j+1, len(nums)):
+                    new1 = [nums[i],nums[j],nums[k]]
+                    if sum(new1)== 0:
+                        new1.sort()
+                        if new1 not in ans:
+                            ans.append(new1)
+        return ans
+    
+    def threeSum2(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()
+        ans = []
+        i = 0
+        sizeNums = len(nums)
+        while i <= sizeNums-3:
+            j = i + 1
+            k = sizeNums-1
+            while j < k:
+                sublist = [nums[i], nums[j], nums[k]]
+                suma = sum(sublist)
+                if suma==0 and sublist not in ans:
+                    ans.append(sublist)
+                    k -= 1
+                elif suma < 0: 
+                    k -= 1
+                else:
+                    j += 1
+            i+=1
+        return ans

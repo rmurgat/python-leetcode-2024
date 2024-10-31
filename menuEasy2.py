@@ -190,7 +190,9 @@ def printExcelSheetColumnNumber():
 
 def printReversingBinary():
     sol = BinaryBundle()
-    print("res: ", sol.DecimalToBinary(10))
+
+    print("res (20365): ", sol.InvertBinaryDecimal(20365))
+    print("verify (20365): ", format(20365,'b'))
 
 
 def main():

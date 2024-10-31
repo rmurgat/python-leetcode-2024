@@ -49,6 +49,12 @@ def printingMaximumTastinessCandyBasket():
     res = sol.maximumTastinessV1([13,5,1,8,21,2],3)
     print("result: ", res)
 
+def printingBinarySearch():
+    sol = ListBundleR1()
+    print("Binary Search to [9]: in [-1,0,3,5,9,12]")
+    res = sol.searchBinary([-1,0,3,5,9,12],9)
+    print("result:", res)
+
 def main():
     while True:
         print("\n[ MAIN MENU ] ")
@@ -57,6 +63,7 @@ def main():
         print("3. Trapping Rain Water")
         print("4. Container With Most Water")
         print("5. Maximum Tastiness of Candy Basket")
+        print("6. Binary Search")
         print("98. play a song")
         print("99. exit()")
         x = int(input("Type option:"))
@@ -66,6 +73,7 @@ def main():
             case 3: printingTrappingRainWater()
             case 4: printingContainerWithMostWater()
             case 5: printingMaximumTastinessCandyBasket()
+            case 6: printingBinarySearch()
             case 98: playasong()
             case 99: break
 
