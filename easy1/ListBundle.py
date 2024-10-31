@@ -13,6 +13,14 @@ class ListBundle:
                 r+=1
         return r
     
+    def removeDuplicates(self, nums: List[int]) -> int:
+        j = 1
+        for i in range(1,len(nums)):
+            if nums[i]!=nums[i-1]:
+                nums[j]=nums[i]
+                j+=1
+        return j
+    
     def searchInsert(self, nums: List[int], target: int) -> int:
         if nums is None: return 0
         for i in range(0,len(nums)):
@@ -199,7 +207,35 @@ class ListBundle:
                 if closeness <= indexDiff and abs(diplicates[num]-num) <=valueDiff: 
                     return True
             diplicates[num] = i
-        return False         
+        return False 
+            
+    def twoSum1(self, nums: List[int], target: int) -> List[int]:
+        result = list()
+        for i in range(0, len(nums)):
+            for j in range(i+1, len(nums)):
+                if nums[i]+nums[j]==target:
+                    return [i, j]
+        return []
+    
+
+    def twoSum2(self, nums: List[int], target: int) -> List[int]:
+        d = {num: idx for idx, num in enumerate(nums) }
+        for i, val in enumerate(nums):
+            diff = target - val 
+            second = d.get(diff, None)
+            if second:
+                if second != i:
+                    return [i,second]
+        return []
+
+    def twoSum3(self, nums: List[int], target: int) -> List[int]:
+        d={}
+        for i,val in enumerate(nums):
+            diff = target - val
+            if diff in d:
+                return [i,d[diff]]
+            d[val]=i
+        return []
     
     def threeSum1(self, nums: List[int]) -> List[List[int]]:
         ans = []
@@ -218,18 +254,21 @@ class ListBundle:
         ans = []
         i = 0
         sizeNums = len(nums)
-        while i <= sizeNums-3:
+        for i, fix in enumerate(nums):
+            if i>0 and nums[i-1]==fix:
+                continue
             j = i + 1
             k = sizeNums-1
             while j < k:
-                sublist = [nums[i], nums[j], nums[k]]
-                suma = sum(sublist)
-                if suma==0 and sublist not in ans:
-                    ans.append(sublist)
+                suma = fix + nums[j] + nums[k]
+                if suma > 0: 
                     k -= 1
-                elif suma < 0: 
-                    k -= 1
-                else:
+                elif suma < 0:
                     j += 1
-            i+=1
+                else:
+                    ans.append([fix, nums[j], nums[k]])
+                    j += 1
+                    while nums[j-1]== nums[j] and j<k: 
+                        j+=1
         return ans
+    

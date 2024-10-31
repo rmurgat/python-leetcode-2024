@@ -3,6 +3,52 @@ from typing import List
 
 class StringBundle:
 
+    def isPalindrome(self, s:str) -> bool:
+        i = 0
+        j = len(s)-1
+        while (i<j):
+            if s[i]!=s[j]: 
+                return False
+            i+=1
+            j-=1
+        return True
+    
+    def isPalindromeAlpha(self, s:str) -> bool:
+        tmp = ""
+        s = s.lower()
+        for c in s:
+            if c.isalpha() or c.isnumeric(): tmp+=c
+        print ("tmp:"+tmp)
+        if not tmp: return True
+        i = 0
+        j = len(tmp)-1
+        while (i<j):
+            if tmp[i]!=tmp[j]: 
+                return False
+            i+=1
+            j-=1
+        return True
+
+
+    def isPalindromeInt(self, num:int) -> bool:
+        if num<0: 
+            return False
+        snum = str(num)
+        return self.isPalindrome(snum)
+    
+    def longestPalindrome(self, s: str) -> str:
+        if self.isPalindrome(s): return s
+        longest = 0
+        longstr = ""
+        for i in range(len(s)):
+            for j in range(i+1,len(s)+1):
+                    news = s[i:j] 
+                    if self.isPalindrome(news):
+                        if len(news) > longest:
+                            longest = len(news)
+                            longstr = news  
+        return longstr
+        
     def myAtoi(self, s: str) -> int:
         negative = 1
         i = 0
@@ -108,3 +154,37 @@ class StringBundle:
             power -= 1
         return res 
 
+    def convertZigZag(self, s: str, numRows: int) -> str:
+        if numRows==1: return s
+        re = ""
+        matrix = [[' '] * len(s) for _ in range(numRows)]
+        col = 0
+        row = 0
+        forward = True
+        
+        for car in s:
+            print ("i,j:[",row,",",col,"]=",car)
+            matrix[row][col] = car
+            if forward:
+                if row == numRows - 1:
+                    row = row - 1
+                    col = col + 1
+                    forward = False
+                else:
+                    row = row + 1
+            else:
+                if row == 0:
+                    row = 1
+                    forward = True
+                else:
+                    row = row - 1
+                    col = col + 1
+
+        for row in matrix:
+            print(row)
+
+        for row in matrix:
+            for car in row:
+                if car!=' ': re = re + car
+
+        return re
