@@ -7,6 +7,7 @@ class ListNode:
         self.next = next
 
 class LinkedList1Bundle:
+
     def createListNode(self, lst: list)-> Optional[ListNode]:
         if len(lst)==0: return None
         head = ListNode()
@@ -121,3 +122,29 @@ class LinkedList1Bundle:
         second.next = tmp
         second.next = self.swapPairs(tmp)
         return first
+    
+    def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
+        last = head
+        node = head
+        while node:
+            if node.val == val:
+                if node is head:
+                    head = node.next
+                else:
+                    last.next = node.next
+            else:    
+                last = node
+            node = node.next
+        return head
+
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if head is None: return
+        last = None
+
+        while head:
+            tmp = head.next
+            head.next = last
+            last = head
+            head = tmp
+
+        return last

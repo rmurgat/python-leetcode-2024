@@ -3,6 +3,8 @@ from easy1.ListBundle import ListBundle
 from easy1.BTreeBundle1 import *
 from easy1.StringBundle import *
 from easy1.BinaryBundle import * 
+from easy1.NumbersBundle import *
+
 import math
 
 def printLinkedListCycle():
@@ -194,15 +196,53 @@ def printReversingBinary():
     print("res (20365): ", sol.InvertBinaryDecimal(20365))
     print("verify (20365): ", format(20365,'b'))
 
+def printDuplicatingZeros():
+    sol = ListBundle()
+    arr = [1,0,2,3,0,4,5,0]
+    sol.duplicateZeros1(arr)
+    print("Answer #1: (low performance) ", arr)
+    arr = [1,0,2,3,0,4,5,0]
+    sol.duplicateZeros2(arr)    
+    print("Answer #1: (optimized)", arr)
+
+def printHappyNumber():
+    lib = NumbersBundle()
+    print(" The Happy Number ")
+    print("Answer #1 ", lib.isHappy(19))
+    print("Answer #1 ", lib.isHappy(2))
+
+def printRemoveLinkedListElement():
+    lib = LinkedList1Bundle()
+    print (" Removed Linked List Element ")
+    head = lib.createListNode([1,2,6,3,4,5,6])
+    print ("Answer # 1: ", lib.convertListNode2String(lib.removeElements(head,6)))
+    head = lib.createListNode([7,7,7,7,1])
+    print ("Answer # 2: ", lib.convertListNode2String(lib.removeElements(head,7)))
+    head = lib.createListNode([1,2,2,1])
+    print ("Answer # 3: ", lib.convertListNode2String(lib.removeElements(head,2)))    
+
+def printRevertLinkedList():
+    lib = LinkedList1Bundle()
+    print (" Reverting Linked List Elements ")
+    print ("Answer # 1: ", lib.convertListNode2String(lib.reverseList(lib.createListNode([1,2,3,4,5]))))
+    print ("Answer # 1: ", lib.convertListNode2String(lib.reverseList(lib.createListNode([1,2]))))
+    print ("Answer # 1: ", lib.convertListNode2String(lib.reverseList(lib.createListNode([]))))
+
+def printCountCompleteTreeNodes():
+    lib = BTreeBundle1()
+    head = lib.insertInOrder([1,2,3,4,5,6])
+    print ("print bTree: ", lib.prettyTree(head))
+    print ("answer #1: ", lib.countNodes(head))
+
 
 def main():
     while True:
         print("\n[ MAIN MENU ] ")
-        print("1. Evaluate Linked List Cycle")
-        print("2. Intersection of Two Linked Lists")
-        print("3. Remove Duplicates from Sorted List")
-        print("4. Merge Lists")
-        print("5. bTree Traversals")
+        print("1. Evaluate Linked List Cycle                  21. Duplicate Zeros (LC#1089)")
+        print("2. Intersection of Two Linked Lists            22. Happy Number (LC#202)")
+        print("3. Remove Duplicates from Sorted List          23. Removed Linked List Elements (LC#203)")
+        print("4. Merge Lists                                 24. Revert Linked List (LC#206)")
+        print("5. bTree Traversals                            25. Count Complete Tree Nodes (LC#222)")
         print("6. Same bTree")
         print("7. Symetric bTree")
         print("8. Maximus Depth in bTree")
@@ -242,6 +282,11 @@ def main():
             case 18: printMayorityelement()
             case 19: printExcelSheetColumnNumber()
             case 20: printReversingBinary()
+            case 21: printDuplicatingZeros()
+            case 22: printHappyNumber()
+            case 23: printRemoveLinkedListElement()
+            case 24: printRevertLinkedList()
+            case 25: printCountCompleteTreeNodes()
             case 99: exit()
 
 main()

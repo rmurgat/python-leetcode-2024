@@ -219,4 +219,12 @@ class BTreeBundle1:
         return res
     
 
+    def countNodes(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+        total = 1 
+        total = total + self.countNodes(root.left)
+        total = total + self.countNodes(root.right)
+
+        return total
         

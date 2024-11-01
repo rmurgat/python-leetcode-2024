@@ -272,3 +272,25 @@ class ListBundle:
                         j+=1
         return ans
     
+    def duplicateZeros1(self, arr: List[int]) -> None:
+        """
+        Do not return anything, modify arr in-place instead.
+        """
+        i = 0
+        while i<len(arr)-1:
+            if arr[i]==0:
+                j = len(arr)-1
+                while j>i:
+                    arr[j]=arr[j-1]
+                    j-=1
+                i+=1
+            i+=1       
+
+    def duplicateZeros2(self, arr: List[int]) -> None:
+        i = 0
+        while i<len(arr)-1:
+            if arr[i]==0:
+                arr.insert(i+1,0)
+                arr.pop()
+                i+=1
+            i+=1
