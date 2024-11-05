@@ -228,3 +228,12 @@ class BTreeBundle1:
 
         return total
         
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        if root is None:
+            return None
+        
+        tmpleft = root.left
+        root.left = self.invertTree(root.right)
+        root.right = self.invertTree(tmpleft)
+        return root
+

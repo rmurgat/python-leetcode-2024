@@ -294,3 +294,49 @@ class ListBundle:
                 arr.pop()
                 i+=1
             i+=1
+
+    def intersection1(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        ans = {n for n in nums1 if n in nums2}
+        return list(ans)
+    
+    def intersection2(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        ans = set()
+        for i in nums1:
+            if i in nums2:
+                ans.add(i)
+        return list(ans)
+    
+    def intersection3(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        set1 = set(nums1)
+        set2 = set(nums2)
+        return list(set1.intersection(set2))
+
+    def intersectII_1(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        ans = []
+        d = {}
+        for i in nums1:
+            j = d.get(i,-1) + 1
+            while j < len(nums2):
+                if i == nums2[j]:
+                    ans.append(i)
+                    d[i]=j
+                    break
+                j+=1
+        return ans
+
+    def intersectII_2(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        nums1.sort()
+        nums2.sort()
+        ans = []
+        i = 0
+        j = 0
+        while i < len(nums1) and j<len(nums2):
+            if nums1[i] == nums2[j]:
+                ans.append(nums1[i])
+                j+=1
+                i+=1
+            elif nums2[j] > nums1[i]:
+                i+=1
+            else:
+                j+=1
+        return ans

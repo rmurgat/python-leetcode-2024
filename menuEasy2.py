@@ -4,6 +4,7 @@ from easy1.BTreeBundle1 import *
 from easy1.StringBundle import *
 from easy1.BinaryBundle import * 
 from easy1.NumbersBundle import *
+from easy1.MyStack import *
 
 import math
 
@@ -234,6 +235,51 @@ def printCountCompleteTreeNodes():
     print ("print bTree: ", lib.prettyTree(head))
     print ("answer #1: ", lib.countNodes(head))
 
+def printIntersectionTwoArrays():
+    lib = ListBundle()
+    print ("Print Intersection() in Two Arrays")
+    print ("Answer #1: ", lib.intersection1([1,2,2,1],[2,2]))
+    print ("Answer #1: ", lib.intersection2([1,2,2,1],[2,2]))
+    print ("Answer #1: ", lib.intersection3([1,2,2,1],[2,2]))
+    print ()
+    print ("Answer #1: ", lib.intersection1([4,9,5],[9,4,9,8,4]))
+    print ("Answer #1: ", lib.intersection2([4,9,5],[9,4,9,8,4]))
+    print ("Answer #1: ", lib.intersection3([4,9,5],[9,4,9,8,4]))    
+    print ()
+    print ("Answer II #1: ", lib.intersectII_1([4,9,5],[9,4,9,8,4]))
+    print ("Answer II #2: ", lib.intersectII_1([1,2,2,1],[2]))
+    print ()    
+    print ("Answer II #1: ", lib.intersectII_2([4,9,5],[9,4,9,8,4]))
+    print ("Answer II #2: ", lib.intersectII_2([1,2,2,1],[2]))
+    
+def printImplementingStackUsingQueues():
+    lib = MyStack()
+    lib.push("MyStack")
+    lib.push("push")
+    lib.push("push")
+    lib.push("top")
+    lib.push("pop")
+    lib.push("empty")
+
+    print(" pop: ", lib.pop())
+    print(" top: ", lib.top())
+    print(" empty: ", lib.empty())
+
+def printInvertBinaryTree():
+    lib = BTreeBundle1()
+    root = TreeNode(4)
+    root.left = TreeNode(2)
+    root.right = TreeNode(7)
+    root.left.left = TreeNode(1)
+    root.left.right = TreeNode(3)
+    root.right.left = TreeNode(6)
+    root.right.right = TreeNode(9)
+    print("original tree:")
+    lib.prettyTree(root)
+    print("inverted tree:")
+    inverted = lib.invertTree(root)
+    lib.prettyTree(inverted)
+
 
 def main():
     while True:
@@ -243,9 +289,9 @@ def main():
         print("3. Remove Duplicates from Sorted List          23. Removed Linked List Elements (LC#203)")
         print("4. Merge Lists                                 24. Revert Linked List (LC#206)")
         print("5. bTree Traversals                            25. Count Complete Tree Nodes (LC#222)")
-        print("6. Same bTree")
-        print("7. Symetric bTree")
-        print("8. Maximus Depth in bTree")
+        print("6. Same bTree                                  26. Intersection Two Arrays (LC#349)")
+        print("7. Symetric bTree                              27. Implement Stack using Queues (LC#225)")
+        print("8. Maximus Depth in bTree                      28. Invert Binary Tree (LC#226)   ")
         print("9. Convert Sorted Array to Binary Search Tree")
         print("10. Insert List in Order to Binary Tree")
         print("11. Printing Depth Tree")
@@ -287,6 +333,9 @@ def main():
             case 23: printRemoveLinkedListElement()
             case 24: printRevertLinkedList()
             case 25: printCountCompleteTreeNodes()
+            case 26: printIntersectionTwoArrays()
+            case 27: printImplementingStackUsingQueues()
+            case 28: printInvertBinaryTree()
             case 99: exit()
 
 main()
