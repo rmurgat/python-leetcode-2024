@@ -217,7 +217,6 @@ class BTreeBundle1:
                 stack.pop()
         backtrack(0,0)
         return res
-    
 
     def countNodes(self, root: Optional[TreeNode]) -> int:
         if not root:
@@ -236,4 +235,76 @@ class BTreeBundle1:
         root.left = self.invertTree(root.right)
         root.right = self.invertTree(tmpleft)
         return root
+
+    def lowestCommonAncestorBST_1(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        path1 = []
+        path2 = []
+        # finding path to p
+        head = root
+        while head:
+            path1.append(head)
+            if p.val < head.val:
+                head = head.left
+            elif p.val > head.val:
+                head = head.right
+            elif p.val == head.val:
+                break
+
+        # finding path to q
+        head = root
+        while head:
+            path2.append(head)
+            if q.val < head.val:
+                head = head.left
+            elif q.val > head.val:
+                head = head.right
+            elif q.val == head.val:
+                break                
+        i = 0
+        while i < min(len(path1),len(path2)):
+            if path1[i].val!=path2[i].val:
+                break
+            i+=1
+
+        return path1[i-1]
+    
+    def lowestCommonAncestorBST_2(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        while root:
+            if root.val < p.val and root.val < q.val:
+                root = root.right
+            elif root.val > p.val and root.val > q.val:
+                root = root.left
+            else:
+                break
+        return root
+
+    def lowestCommonAncestorBT_1(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        def getFullPathBT( root: TreeNode, tofind: TreeNode, path: List[TreeNode]):
+
+            answer = False
+
+            if root is None:
+                return False
+
+            path.append(root)
+            answer =  getFullPathBT(root.left, tofind, path)
+            if not answer:
+                answer = root.val == tofind.val    
+                if not answer: 
+                    answer = getFullPathBT(root.right, tofind, path)
+            if not answer: path.pop()
+            return answer
+
+        path1 = []
+        getFullPathBT(root, p, path1)
+        path2 = []
+        getFullPathBT(root, q, path2)
+
+        i = 0
+        while i < min(len(path1),len(path2)):
+            if path1[i].val!=path2[i].val:
+                break
+            i+=1
+
+        return path1[i-1]
 

@@ -8,6 +8,12 @@ class ListNode:
 
 class LinkedList1Bundle:
 
+    def findNode(self, head: ListNode, tofind) -> Optional[ListNode]:
+        while head:
+            if head.val == tofind: return head
+            head = head.next
+        return None
+
     def createListNode(self, lst: list)-> Optional[ListNode]:
         if len(lst)==0: return None
         head = ListNode()
@@ -148,3 +154,26 @@ class LinkedList1Bundle:
             head = tmp
 
         return last
+    
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        nodes = []
+        while head:
+            nodes.append(head.val)
+            head = head.next
+        i = 0
+        j = len(nodes)-1
+        while i<j:
+            if nodes[i]!=nodes[j]:
+                return False
+            i+=1
+            j-=1
+        return True
+    
+    def deleteNode(self, node):
+        """
+        :type node: ListNode
+        :rtype: void Do not return anything, modify node in-place instead.
+        """
+        if node.next:
+            node.val = node.next.val
+        node.next = node.next.next    

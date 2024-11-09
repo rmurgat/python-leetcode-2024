@@ -1,4 +1,5 @@
 import operator
+import math
 from typing import List
 from collections import OrderedDict
 
@@ -340,3 +341,210 @@ class ListBundle:
             else:
                 j+=1
         return ans
+    
+    def threeSumClosest_1(self, nums: List[int], target: int) -> int:
+        nsize = len(nums)
+        answer = 0
+        mindiff3 = float('inf')
+        for i in range (0,nsize-2):
+            for j in range (i+1, nsize-1):
+                for k in range (j+1, nsize):
+                    sum3 = nums[i] + nums[j] + nums[k]
+                    diff3 = abs(target - sum3)
+                    #print ("3 vals [", nums[i], nums[j], nums[k], "] sum3:", sum3, " diff3:", diff3)
+                    if diff3 < mindiff3:
+                        mindiff3 = diff3
+                        answer = sum3
+        return answer
+    
+    def threeSumClosest_2(self, nums: List[int], target: int) -> int:
+        answer = {"res":0,"min":float('inf')}
+        mindiff3 = float('inf')
+
+        def ThreeSum(start: int, l3: List[int], answer):
+            if len(l3) == 3:
+                sum3 = sum(l3)
+                diff3 = abs(target - sum3)
+                #print ("l3 ", l3," sum3: ", sum3, " diff3: ", diff3)
+                if diff3 < answer["min"]:
+                    answer["min"] = diff3
+                    answer["res"] = sum3
+
+            for i in range (start, len(nums)):
+                l3.append(nums[i])
+                ThreeSum(i+1, l3, answer)
+                l3.pop()
+
+        ThreeSum(0,[], answer)
+
+        return answer["res"]
+    
+    def threeSumClosest_3(self, nums: List[int], target: int) -> int:
+        nums.sort()
+        last = len(nums)
+        mind = float('inf')
+        answer = 0
+        for i in range (0, last):
+            low = i+1
+            hight = last-1
+            while low < hight:
+                sum3 = nums[i]+nums[low]+nums[hight]
+                dist = abs(target-sum3)
+                if dist < mind:
+                    mind = dist
+                    answer = sum3
+                if sum3 < target:
+                    low+=1 
+                elif sum3 > target:
+                    hight-=1 
+                elif sum3 == target:
+                    return target
+        return answer
+
+    def letterCombinations_1(self, digits: str) -> List[str]:
+        if digits == "": return []
+        keys = []
+        answer = []
+        d = {2:"abc", 3: "def", 4: "ghi", 5: "jkl", 6: "mno", 7: "pqrs", 8: "tuv", 9:"wxyz"}
+        for digit in digits:
+            chars = d.get(int(digit),None)
+            if chars:
+                keys.append(chars)
+
+        def combination(keys: List[str], digit: int, comb: str, answer: List[str]):
+            if digit == len(keys):
+                answer.append(comb)
+            else:
+                for char in keys[digit]:
+                    combination(keys, digit + 1, comb + char, answer)
+        combination(keys, 0, "", answer)
+        return answer  
+    
+    # https://leetcode.com/problems/summary-ranges/
+    def summaryRanges(self, nums: List[int]) -> List[str]:
+        ans = []
+        if not nums: return []
+        start = 0
+        for i in range(1, len(nums)):
+            if nums[i-1] + 1 < nums[i]:
+                ans.append(f"{nums[start]}" if start==i-1 else f"{nums[start]}->{nums[i-1]}" )
+                start = i
+        ans.append(f"{nums[start]}" if start==len(nums)-1 else f"{nums[start]}->{nums[len(nums)-1]}")
+        return ans
+  
+    def productExceptSelf_1(self, nums: List[int]) -> List[int]:
+        ans = []
+        for i in range (len(nums)):
+            product = 1
+            for j in range (0,len(nums)):
+                if i != j:
+                    product = product * nums[j]
+            ans.append(product)
+        return ans
+    
+    def productExceptSelf_2(self, nums: List[int]) -> List[int]:
+        ans = [0] * len(nums)
+        left = 1
+        for i in range(len(nums)):
+            ans[i] = left
+            left = left * nums[i]
+        right = 1
+        right = 1
+        for i in range(len(nums)-1,-1,-1):
+            ans[i] = right * ans[i]
+            right = right * nums[i]
+        return ans
+    
+    def fourSum_1(self, nums: List[int], target: int) -> List[List[int]]:
+        nums.sort()
+        ans = []
+        long = len(nums)
+        for i in range (long-3):
+            if i>0 and nums[i]==nums[i-1]: 
+                continue
+            for j in range (i+1,long-2):
+                if j>i+1 and nums[j]==nums[j-1]: 
+                    continue
+                left = j + 1
+                right = long-1
+                while left < right:
+                    suma = nums[i]+ nums[j]+ nums[left]+ nums[right]
+                    if suma < target:
+                        left+=1
+                    elif suma > target:
+                        right-=1
+                    else:
+                        ans.append([nums[i], nums[j], nums[left], nums[right]])
+                        left+=1                            
+                        right-=1
+                        while left<right and nums[left]==nums[left-1]:
+                            left+=1
+        return ans
+
+
+    def nextPermutation_1(self, nums: List[int]) -> None:
+        ans = []
+        for i in range (len(nums)):
+            for j in range (len(nums)):
+                for k in range (len(nums)):
+                    if i!=j and j!=k and i!=k:
+                        ans.append([nums[i],nums[j],nums[k]])
+        idx = ans.index(nums)
+        if idx < len(ans)-1:
+            print( ans[idx+1] )
+        else:
+            print( ans[0] )
+
+
+    def nextPermutation_2(self, nums: List[int]) -> None:
+        print(nums)
+
+        def swap(nums: List[int], i):
+            one = i-1
+            if i==0: one = len(nums)-1
+            tmp = nums[one]
+            nums[one] = nums[i]
+            nums[i] = tmp
+
+        for i in range(len(nums)-1,1,-1):
+            swap(nums,i)
+            print(nums)
+            
+        for i in range(0,len(nums)-1):
+            swap(nums,i)
+            print(nums)
+
+    def searchInRotated(self, nums: List[int], target: int) -> int:
+        left = 0
+        right = len(nums)-1
+        while left < right:
+            mid = math.floor((right-left)/2) + left
+            if nums[mid]==target:
+                return  mid
+            if nums[mid] >= nums[left]:  #sorted
+                if nums[left]<=target<=nums[mid]:
+                    right = mid-1
+                else:
+                    left = mid + 1
+            elif nums[mid] <= nums[right]:  #sorted
+                if nums[mid]<=target<=nums[right]:
+                    left = mid + 1
+                else:
+                    right = mid -1
+        return -1
+    
+    #34. Find First and Last Position of Element in Sorted Array
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        left = 0
+        right = len(nums)-1
+        foundl = -1
+        foundr = -1
+        while left<len(nums):
+            if nums[left] == target:
+                foundl = left
+            if nums[right] == target:
+                foundr = right
+            left +=1
+            right-=1
+
+        return [foundl, foundr]
