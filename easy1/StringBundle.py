@@ -188,3 +188,59 @@ class StringBundle:
                 if car!=' ': re = re + car
 
         return re
+    
+    def countAndSay(self, n: int) -> str:
+        res = ""
+        def RLE(s:str, count:int) -> str:
+            ans = []
+            l = len(s)
+            count = 0
+            if l==0: return "1"
+            c = s[l-1]
+            for i in range (l-1,-1,-1):
+                if c!=s[i]:
+                    ans.append(str(count)+c)
+                    c = s[i]
+                    count = 0
+                count = count + 1
+            ans.append(str(count)+c)
+            return "".join(ans[::-1])
+        while n>0:
+            res = RLE(res,0)
+            n -=1
+        return res
+
+    # https://leetcode.com/problems/multiply-strings/
+    def multiply(self, num1: str, num2: str) -> str:
+        total = "0"
+
+        def sumStrings(num1:str, num2:str) -> str:
+            l = max(len(num1),len(num2))
+            num1 = num1.zfill(l)
+            num2 = num2.zfill(l)
+            res = ""
+            left = 0
+            for i in range (len(num1)-1,-1,-1):
+                suma = int(num1[i]) + int(num2[i]) + left
+                if suma > 9: 
+                    left = 1
+                    suma = suma - 10
+                else:
+                    left = 0
+                res = res + str(suma)
+            return ("1" if left>0 else "") + res[::-1]
+
+        zeroi = 0    
+        for i in range (len(num1)-1,-1,-1):
+            suma = ""
+            zeroj = 0
+            for j in range (len(num2)-1,-1,-1):
+                smult = str(int(num1[i])*int(num2[j])) + ("0"*(zeroi+zeroj))
+                suma = sumStrings(suma, smult)
+                zeroj = zeroj + 1
+            total = sumStrings(total, suma)
+            zeroi = zeroi + 1
+            
+        total = total.lstrip('0')
+
+        return "0" if not total else total

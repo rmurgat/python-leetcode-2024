@@ -177,3 +177,18 @@ class LinkedList1Bundle:
         if node.next:
             node.val = node.next.val
         node.next = node.next.next    
+
+    # https://leetcode.com/problems/remove-nth-node-from-end-of-list/
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        def backtracking(head, n) -> int:
+            if not head:
+                return 0
+            counter = backtracking(head.next,n) + 1
+            if counter == n+1:
+                head.next = head.next.next if head.next else None
+            return counter
+
+        counter = backtracking(head, n)
+        if counter == n:
+            head = head.next
+        return head        

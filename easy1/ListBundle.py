@@ -535,16 +535,61 @@ class ListBundle:
     
     #34. Find First and Last Position of Element in Sorted Array
     def searchRange(self, nums: List[int], target: int) -> List[int]:
-        left = 0
-        right = len(nums)-1
-        foundl = -1
-        foundr = -1
-        while left<len(nums):
-            if nums[left] == target:
-                foundl = left
-            if nums[right] == target:
-                foundr = right
-            left +=1
-            right-=1
+        first=-1
+        last = -1
+        low = 0
+        top = len(nums)-1
+        while low<=top:
+            mid = math.floor((top-low)/2) + low
+            if nums[mid]==target:
+                i = mid
+                while i>=0 and nums[i]==target:
+                    first = i
+                    i-=1
+                i = mid
+                while i<len(nums) and nums[i]==target:
+                    last = i
+                    i+=1
+                break
+            elif nums[mid]>target:
+                top = mid - 1
+            else:
+                low = mid + 1
+        return [first,last]
+    
+    # https://leetcode.com/problems/jump-game/
+    def canJump_1(self, nums: List[int]) -> bool:
+        d = {}
+        def jump(nums, pos) -> bool:
+            if pos == len(nums)-1: return True
+            if pos > len(nums)-1: return False
+            if nums[pos]==0: return False
+            for i in range (1, nums[pos]+1):
+                explored = d.get(pos+i, False)
+                if not explored and jump(nums, pos+i): 
+                    return True
+                else:
+                    d[pos+1] = True
+            return False
+        return jump(nums, 0)
+    
+    # https://leetcode.com/problems/jump-game/
+    def canJump_2(self, nums: List[int]) -> bool:
+        d = {}
+        stack = [0]
+        l = len(nums)-1
+        while len(stack)>0:
+            pos = stack.pop()
+            if pos == l: return True
+            if pos < l and nums[pos] != 0:
+                processed = d.get(pos,False)
+                if not processed:
+                    for i in range (1, nums[pos]+1):
+                        processed1 = d.get(pos+i,False)
+                        if not processed1: stack.append(pos+i)
+                    d[pos] = True
+        return False
 
-        return [foundl, foundr]
+    # https://leetcode.com/problems/merge-intervals/
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        pass

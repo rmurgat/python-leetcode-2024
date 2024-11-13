@@ -4,6 +4,7 @@ from easy1.BTreeBundle1 import *
 from easy1.StringBundle import *
 from easy1.BinaryBundle import * 
 from easy1.NumbersBundle import *
+from easy1.MatrixBundle import *
 from easy1.MyStack import *
 
 import math
@@ -399,22 +400,144 @@ def printFind1stAndLastPositioninArray():
     print("Answer #1: ", lib.searchRange([5,7,7,8,8,10], 8))
     print("Answer #2: ", lib.searchRange([5,7,7,8,8,10], 6))
 
+def printIsValidSudoku():
+    lib = MatrixBundle()
+    board = [["5","3",".",".","7",".",".",".","."]
+            ,["6",".",".","1","9","5",".",".","."]
+            ,[".","9","8",".",".",".",".","6","."]
+            ,["8",".",".",".","6",".",".",".","3"]
+            ,["4",".",".","8",".","3",".",".","1"]
+            ,["7",".",".",".","2",".",".",".","6"]
+            ,[".","6",".",".",".",".","2","8","."]
+            ,[".",".",".","4","1","9",".",".","5"]
+            ,[".",".",".",".","8",".",".","7","9"]]
     
+    print("Answer #1:", lib.isValidSudoku(board))
 
-
+    board = [["8","3",".",".","7",".",".",".","."]
+            ,["6",".",".","1","9","5",".",".","."]
+            ,[".","9","8",".",".",".",".","6","."]
+            ,["8",".",".",".","6",".",".",".","3"]
+            ,["4",".",".","8",".","3",".",".","1"]
+            ,["7",".",".",".","2",".",".",".","6"]
+            ,[".","6",".",".",".",".","2","8","."]
+            ,[".",".",".","4","1","9",".",".","5"]
+            ,[".",".",".",".","8",".",".","7","9"]]    
     
+    print("Answer #2:", lib.isValidSudoku(board))
+    board = [[".",".",".",".","5",".",".","1","."]
+            ,[".","4",".","3",".",".",".",".","."]
+            ,[".",".",".",".",".","3",".",".","1"]
+            ,["8",".",".",".",".",".",".","2","."]
+            ,[".",".","2",".","7",".",".",".","."]
+            ,[".","1","5",".",".",".",".",".","."]
+            ,[".",".",".",".",".","2",".",".","."]
+            ,[".","2",".","9",".",".",".",".","."]
+            ,[".",".","4",".",".",".",".",".","."]]
+    print("Answer #3:", lib.isValidSudoku(board))
+
+def printSudokuSolver():
+    lib = MatrixBundle()    
+    board = [["5","3",".",".","7",".",".",".","."],
+             ["6",".",".","1","9","5",".",".","."],
+             [".","9","8",".",".",".",".","6","."],
+             ["8",".",".",".","6",".",".",".","3"],
+             ["4",".",".","8",".","3",".",".","1"],
+             ["7",".",".",".","2",".",".",".","6"],
+             [".","6",".",".",".",".","2","8","."],
+             [".",".",".","4","1","9",".",".","5"],
+             [".",".",".",".","8",".",".","7","9"]]
+    print("[solving...original]")     
+    #lib.printPrint(board)
+    #print("[solving...brute force]") 
+    #lib.solveSudoku_1(board)
+    lib.printPrint(board)
+    print("[solving...optimized]") 
+    board = [["5","3",".",".","7",".",".",".","."],
+             ["6",".",".","1","9","5",".",".","."],
+             [".","9","8",".",".",".",".","6","."],
+             ["8",".",".",".","6",".",".",".","3"],
+             ["4",".",".","8",".","3",".",".","1"],
+             ["7",".",".",".","2",".",".",".","6"],
+             [".","6",".",".",".",".","2","8","."],
+             [".",".",".","4","1","9",".",".","5"],
+             [".",".",".",".","8",".",".","7","9"]]
+    lib.solveSudoku_2(board)
+    lib.printPrint(board)
+    print("[solving #2...optimized]")     
+    board = [[".",".","9","7","4","8",".",".","."],
+             ["7",".",".",".",".",".",".",".","."],
+             [".","2",".","1",".","9",".",".","."],
+             [".",".","7",".",".",".","2","4","."],
+             [".","6","4",".","1",".","5","9","."],
+             [".","9","8",".",".",".","3",".","."],
+             [".",".",".","8",".","3",".","2","."],
+             [".",".",".",".",".",".",".",".","6"],
+             [".",".",".","2","7","5","9",".","."]]
+    lib.solveSudoku_2(board)
+    lib.printPrint(board)
+
+def printRemoveNthNodeFromEndofList():
+    lib = LinkedList1Bundle()
+    head = lib.createListNode([1,2,3,4,5])
+    head = lib.removeNthFromEnd(head, 1)
+    print("Answer #1: ", lib.convertListNode2String(head))
+
+def printDivideTwoIntegers():
+    lib = NumbersBundle()
+    print("Answer #1: ", lib.divide_1(10, 3))
+    print("Answer #2: ", lib.divide_1(100, 35))
+    print("Answer #3: ", lib.divide_1(3500, 3000))
+    print("Answer #4: ", lib.divide_1(7, -3))
+    print("Answer #5: ", lib.divide_1(0, 1))
+    print("Answer #6: ", lib.divide_1(-1, 1))
+    print("Answer #7: ", lib.divide_1(-2147483648,-1))
+
+def printCountAndSay():
+    lib = StringBundle()
+    print("Answer #1: ", lib.countAndSay(1))
+    print("Answer #2: ", lib.countAndSay(4))
+
+def printMultiplyStrings():
+    lib = StringBundle()
+    print("Answer #1: ", lib.multiply("2", "3"))   #Output : 6
+    print("Answer #2: ", lib.multiply("456","123"))   #Output : 56088
+    print("Answer #3: ", lib.multiply("4154", "51454"))   #Output : 213739916
+    print("Answer #4: ", lib.multiply("654154154151454545415415454", "63516561563156316545145146514654"))   #Output : 41549622603955309777243716069997997007620439937711509062916
+
+def printJumpGame():
+    lib = ListBundle()
+    print("Answer #1:", lib.canJump_1([1,2])) 
+    print("Answer #2:", lib.canJump_1([2,0]))
+    print("Answer #3:", lib.canJump_1([2,3,1,1,4]))
+    print("Answer #4:", lib.canJump_1([3,2,1,0,4]))
+    print("Answer #5:", lib.canJump_1([2,0,0]))
+    print()
+    #print("Answer #1:", lib.canJump_2([1,2])) 
+    #print("Answer #2:", lib.canJump_2([2,0]))
+    #print("Answer #6:", lib.canJump_2([2,3,1,1,4]))
+    #print("Answer #7:", lib.canJump_2([3,2,1,0,4]))
+    #print("Answer #5:", lib.canJump_2([2,0,0]))
+    large1 = [2,0,6,9,8,4,5,0,8,9,1,2,9,6,8,8,0,6,3,1,2,2,1,2,6,5,3,1,2,2,6,4,2,4,3,0,0,0,3,8,2,4,0,1,2,0,1,4,6,5,8,0,7,9,3,4,6,6,5,8,9,3,4,3,7,0,4,9,0,9,8,4,3,0,7,7,1,9,1,9,4,9,0,1,9,5,7,7,1,5,8,2,8,2,6,8,2,2,7,5,1,7,9,6]
+    print("Answer #5:", lib.canJump_2(large1))
+
+def printMergeIntervals():
+    lib = ListBundle()
+    print("Answer #1: ", lib.merge([[1,3],[2,6],[8,10],[15,18]]))
+    print("Answer #1: ", lib.merge([[1,4],[4,5]]))
+
 def main():
     while True:
         print("\n[ MAIN MENU ] ")
         print("1. Evaluate Linked List Cycle                  21. Duplicate Zeros (LC#1089)                 41. Find first,last idx in Array (LC#34)")
-        print("2. Intersection of Two Linked Lists            22. Happy Number (LC#202)")
-        print("3. Remove Duplicates from Sorted List          23. Removed Linked List Elements (LC#203)")
-        print("4. Merge Lists                                 24. Revert Linked List (LC#206)")
-        print("5. bTree Traversals                            25. Count Complete Tree Nodes (LC#222)")
-        print("6. Same bTree                                  26. Intersection Two Arrays (LC#349)")
-        print("7. Symetric bTree                              27. Implement Stack using Queues (LC#225)")
-        print("8. Maximus Depth in bTree                      28. Invert Binary Tree (LC#226)   ")
-        print("9. Convert Sorted Array to Binary Search Tree  29. Three Sum Closest (LC#16)")
+        print("2. Intersection of Two Linked Lists            22. Happy Number (LC#202)                     42. Is Valida Sudoku Matrix (LC#36) ")
+        print("3. Remove Duplicates from Sorted List          23. Removed Linked List Elements (LC#203)     43. Matrix Sudoku Solver (LC#37) SOLVED")
+        print("4. Merge Lists                                 24. Revert Linked List (LC#206)               44. Remove Nth Node from End of List (LC#19)")
+        print("5. bTree Traversals                            25. Count Complete Tree Nodes (LC#222)        45. Divide Two Integers (LC#29)")
+        print("6. Same bTree                                  26. Intersection Two Arrays (LC#349)          46. Count and Say (LC#38)")
+        print("7. Symetric bTree                              27. Implement Stack using Queues (LC#225)     47. Multiply String [LC#43] [to do faster]")
+        print("8. Maximus Depth in bTree                      28. Invert Binary Tree (LC#226)               48. Jump Game (LC#55)")
+        print("9. Convert Sorted Array to Binary Search Tree  29. Three Sum Closest (LC#16)                 49. Merge Intervals (LC#56)")
         print("10. Insert List in Order to Binary Tree        30. Letter Combinatons of a Phone Number")
         print("11. Printing Depth Tree                        31. Summary Ranges (LC#228) ")
         print("12. Path Sum I, II                             32. Is power of Two (LC#231)")
@@ -471,6 +594,14 @@ def main():
             case 39: printNextPermutation()
             case 40: printSeachInRotatedArray()
             case 41: printFind1stAndLastPositioninArray()
+            case 42: printIsValidSudoku()
+            case 43: printSudokuSolver()
+            case 44: printRemoveNthNodeFromEndofList()
+            case 45: printDivideTwoIntegers()
+            case 46: printCountAndSay()
+            case 47: printMultiplyStrings()
+            case 48: printJumpGame()
+            case 49: printMergeIntervals()
             case 99: exit()
 
 main()
