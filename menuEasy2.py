@@ -524,7 +524,30 @@ def printJumpGame():
 def printMergeIntervals():
     lib = ListBundle()
     print("Answer #1: ", lib.merge([[1,3],[2,6],[8,10],[15,18]]))
-    print("Answer #1: ", lib.merge([[1,4],[4,5]]))
+    print("Answer #2: ", lib.merge([[1,4],[4,5]]))
+    print("Answer #3: ", lib.merge([[1,4],[2,3]]))
+    print("Answer #4: ", lib.merge([[2,3],[4,5],[6,7],[8,9],[1,10]]))
+
+def printCombinations():
+    lib = ListBundle()
+    print("Combinations #1:", lib.combine_1(4,2), " (backtracking)")
+    print("combinations #2:", lib.combine_2(4,2), " (backtracking)")
+
+def printPermutations():
+    lib = ListBundle()
+    print("Permutations #1:", lib.permuteRaw_1(2,2), " (backtracking)")
+    print("Permutations #1:", lib.permuteRaw_1(4,2), " (backtracking)")
+    print("Permutations #1:", lib.permuteRaw_1(3,3), " (backtracking)")
+    print()
+    print("Permutations #2:", lib.permute([1,2,3]))
+    print("Permutations #2:", lib.permute([0,1]))
+    print("Permutations #2:", lib.permute([1]))
+
+def printCombinationSum():
+    lib = ListBundle()
+    print ("Convination #1: ", lib.combinationSum([2,3,6,7],7))
+    print ("Convination #1: ", lib.combinationSum([2,3,5],8))
+    
 
 def main():
     while True:
@@ -538,13 +561,13 @@ def main():
         print("7. Symetric bTree                              27. Implement Stack using Queues (LC#225)     47. Multiply String [LC#43] [to do faster]")
         print("8. Maximus Depth in bTree                      28. Invert Binary Tree (LC#226)               48. Jump Game (LC#55)")
         print("9. Convert Sorted Array to Binary Search Tree  29. Three Sum Closest (LC#16)                 49. Merge Intervals (LC#56)")
-        print("10. Insert List in Order to Binary Tree        30. Letter Combinatons of a Phone Number")
-        print("11. Printing Depth Tree                        31. Summary Ranges (LC#228) ")
-        print("12. Path Sum I, II                             32. Is power of Two (LC#231)")
+        print("10. Insert List in Order to Binary Tree        30. Letter Combinatons of a Phone Number      50. Combinations (LC#77)")
+        print("11. Printing Depth Tree                        31. Summary Ranges (LC#228)                   51. Permutations (LC#46)")
+        print("12. Path Sum I, II                             32. Is power of Two (LC#231)                  52. Combination Sum (LC#39)")
         print("13. Flatten Binary Tree to Linked List         33. Is Palindrome Linked List (LC#234)")
         print("14. Generate Parentheses                       34. Lowest Common Ancestor of a BST (LC#235)")
         print("15. Swap Nodes in Pairs                        35. Lowest Common Ancestor of a BT (LC#236)")
-        print("16. Generate Pascal Triangle I, II             36. Delete current Node in a Linked List (LC#237)")
+        print("16. Generate Pascal Triangle I, II             36. Delete current Node @linkedList (LC#237)")
         print("17. Excel Sheet Column Title                   37. Product of Array Except Self (LC#238)")
         print("18. Mayority Element in List                   38. 4 Sum (LC#18)")
         print("19. Excel Sheet Column Number                  39. Next Permutations (LC#31) ERROR!")
@@ -602,6 +625,9 @@ def main():
             case 47: printMultiplyStrings()
             case 48: printJumpGame()
             case 49: printMergeIntervals()
+            case 50: printCombinations()
+            case 51: printPermutations()
+            case 52: printCombinationSum()
             case 99: exit()
 
 main()

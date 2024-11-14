@@ -592,4 +592,108 @@ class ListBundle:
 
     # https://leetcode.com/problems/merge-intervals/
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        intervals.sort(key=lambda x: x[0])
+        ans = []
+        toadd = intervals[0]
+        last = intervals[0]
+        for i in range(0, len(intervals)):
+            cur = intervals[i]
+            if cur[0] > toadd[1]:
+               toadd[1] = max(last[1],toadd[1])
+               ans.append(toadd)
+               toadd = cur
+            else:
+               toadd[1] = max(cur[1],toadd[1])
+            last = cur
+        ans.append(toadd)
+        return ans
+    
+    # https://leetcode.com/problems/combination-sum/
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        anset = set()
+
+        def backtracking(start: int, tmp: List[int]):
+            if sum(tmp) > target:
+                return
+            if sum(tmp) == target:
+                anset.add(tuple(sorted(tmp[:])))
+                return
+
+            for i in range (0, len(candidates)):
+                tmp.append(candidates[i])
+                backtracking(i+1, tmp) 
+                tmp.pop()
+
+        backtracking(0, [])
+        return [list(x) for x in anset]
+
+    # https://leetcode.com/problems/permutations/
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        ans = []
+        tmp = []
+        L = len(nums)
+        def backtracking():
+            if L==len(tmp):
+                ans.append([nums[t] for t in tmp])
+                return
+            for i in range(0, L):
+                if i not in tmp:
+                    tmp.append(i)
+                    backtracking()
+                    tmp.pop()
+            return
+        backtracking()
+        return ans 
+
+    def permuteRaw_1(self, n: int, k: int) -> List[List[int]]:
+        ans = []
+        tmp = []
+        def backtrack():
+            if len(tmp)==k:
+                ans.append(tmp[:])
+                return
+            for i in range(1,n+1):
+                if i not in tmp:
+                    tmp.append(i)
+                    backtrack()
+                    tmp.pop()
+        backtrack()
+        return ans
+
+    # https://leetcode.com/problems/combinations/description/
+    def combine_1(self, n: int, k: int) -> List[List[int]]:
+        ans = []
+        
+        def backtrack(start: int, tmp: List[int]):
+
+            if len(tmp)==k:
+                ans.append(tmp.copy())
+                return
+
+            for i in range(start, n+1):
+                tmp.append(i)
+                backtrack(i+1, tmp)
+                tmp.pop()
+
+        backtrack(1, [])
+
+        #print (ans)
+
+        return ans
+
+    def combine_2(self, n: int, k: int) -> List[List[int]]:
+        ans = []
+        tmp = []
+        def backtrack(start: int):
+            if len(tmp)==k:
+                ans.append(tmp[:])
+                return
+            for i in range(start, n+1):
+                tmp.append(i)
+                backtrack(i+1)
+                tmp.pop()
+        backtrack(1)
+        return ans
+    
+    def goodDaysToRobBank(self, security: List[int], time: int) -> List[int]:
         pass
