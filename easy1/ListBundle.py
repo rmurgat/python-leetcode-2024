@@ -696,4 +696,74 @@ class ListBundle:
         return ans
     
     def goodDaysToRobBank(self, security: List[int], time: int) -> List[int]:
-        pass
+        L = len(security)
+        goodays = []
+        beforedays = [0] * L
+        afterdays = [0] * L
+
+        for i in range (1, L):
+            if security[i] <= security[i-1]:
+                beforedays[i] = beforedays[i-1] + 1
+
+        for i in range (L-2, -1, -1):
+            if security[i] <= security[i+1]:
+                afterdays[i] = afterdays[i+1] + 1
+
+        for i in range (time,L-time):
+            if beforedays[i]>=time and afterdays[i]>=time:
+                goodays.append(i)
+
+        return goodays
+    
+    def combinationSum2_1(self, candidates: List[int], target: int) -> List[List[int]]:
+        L = len(candidates)    
+        answer = set()
+        def backtracking (sublst: list):
+            vals = [candidates[x] for x in sublst ]
+            if sum(vals) == target:
+                vals.sort()
+                answer.add(tuple(vals[:]))
+                return
+            if sum(vals) > target:
+                return
+            for i in range (L):
+                if i not in sublst:
+                    sublst.append(i)
+                    backtracking(sublst)
+                    sublst.pop()
+        backtracking([])
+        return [list(x) for x in answer]
+
+    def combinationSum2_2(self, candidates: List[int], target: int) -> List[List[int]]:
+        L = len(candidates)
+        candidates.sort()
+        answer = []
+
+        def backtracking(lstmp: List[int], cur: int, left: int):
+            if left == 0:
+                answer.append(lstmp[:])
+                return
+
+            for i in range(cur, L):
+                if i>cur and candidates[i]==candidates[i-1]: continue
+                if candidates[i]>left: continue
+                lstmp.append(candidates[i])
+                backtracking(lstmp, i+1, left - candidates[i])
+                lstmp.pop()
+
+        backtracking([],0,target)
+        return answer
+
+        
+                    
+
+        
+
+
+
+    def rob(self, nums: List[int]) -> int:
+        
+
+
+        return 0
+

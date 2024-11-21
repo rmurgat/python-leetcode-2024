@@ -55,6 +55,15 @@ def printingBinarySearch():
     res = sol.searchBinary([-1,0,3,5,9,12],9)
     print("result:", res)
 
+def printingSumListUsingBacktracking():
+    sol = ListBundleR1()
+    print("Simple Sum List")
+    print("Answer 1: ", sol.sumListxBacktracking([4,8,1,2,3,4,3,4,7,9,1,2,3,54,6,7,8,9,7,5,3,2,4,9]))
+    print("Answer 2: ", sol.sumListxBacktracking([13,5,1,8,21,2]))
+    print()
+    print("Sum jumping N")
+    print("Answer 1: ", sol.sumJumping([13,5,1,8,21,2],2))
+
 def main():
     while True:
         print("\n[ MAIN MENU ] ")
@@ -64,6 +73,7 @@ def main():
         print("4. Container With Most Water")
         print("5. Maximum Tastiness of Candy Basket")
         print("6. Binary Search")
+        print("7. Sum a List using Backtracking  ")
         print("98. play a song")
         print("99. exit()")
         x = int(input("Type option:"))
@@ -74,6 +84,7 @@ def main():
             case 4: printingContainerWithMostWater()
             case 5: printingMaximumTastinessCandyBasket()
             case 6: printingBinarySearch()
+            case 7: printingSumListUsingBacktracking()
             case 98: playasong()
             case 99: break
 

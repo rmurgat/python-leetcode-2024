@@ -227,3 +227,21 @@ class ListBundleR1:
     def maximumTastinessV2(self, price: List[int], k: int) -> int:
         # i need to optimize this algorithm
         pass
+
+    
+    def sumListxBacktracking(self, nums: List[int]) -> int:
+        L = len(nums)-1
+
+        def backtracking(i) -> int:
+            if i > L:
+                return 0
+            return nums[i] + backtracking(i+1)
+        
+        return backtracking(0)
+    
+    def sumJumping(self, nums: List[int], jump: int) -> int:
+        L = len(nums)-1
+        def backtracking(i) -> int:
+            if i>L: return 0
+            return nums[i] + backtracking(i+jump)
+        return backtracking(0)

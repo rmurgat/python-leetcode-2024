@@ -545,8 +545,13 @@ def printPermutations():
 
 def printCombinationSum():
     lib = ListBundle()
-    print ("Convination #1: ", lib.combinationSum([2,3,6,7],7))
-    print ("Convination #1: ", lib.combinationSum([2,3,5],8))
+    print ("Conbination #1: ", lib.combinationSum([2,3,6,7],7))
+    print ("Conbination #1: ", lib.combinationSum([2,3,5],8))
+
+def printCombinationSumII():
+    lib = ListBundle()
+    print ("Answer #1 (no passing):", lib.combinationSum2_1([10,1,2,7,6,1,5],8))
+    print ("Answer #1 (no passing):", lib.combinationSum2_2([10,1,2,7,6,1,5],8))
     
 
 def main():
@@ -564,7 +569,7 @@ def main():
         print("10. Insert List in Order to Binary Tree        30. Letter Combinatons of a Phone Number      50. Combinations (LC#77)")
         print("11. Printing Depth Tree                        31. Summary Ranges (LC#228)                   51. Permutations (LC#46)")
         print("12. Path Sum I, II                             32. Is power of Two (LC#231)                  52. Combination Sum (LC#39)")
-        print("13. Flatten Binary Tree to Linked List         33. Is Palindrome Linked List (LC#234)")
+        print("13. Flatten Binary Tree to Linked List         33. Is Palindrome Linked List (LC#234)        53. Combination Sum II (LC#40)")
         print("14. Generate Parentheses                       34. Lowest Common Ancestor of a BST (LC#235)")
         print("15. Swap Nodes in Pairs                        35. Lowest Common Ancestor of a BT (LC#236)")
         print("16. Generate Pascal Triangle I, II             36. Delete current Node @linkedList (LC#237)")
@@ -628,6 +633,7 @@ def main():
             case 50: printCombinations()
             case 51: printPermutations()
             case 52: printCombinationSum()
+            case 53: printCombinationSumII()
             case 99: exit()
 
 main()

@@ -244,3 +244,20 @@ class StringBundle:
         total = total.lstrip('0')
 
         return "0" if not total else total
+    
+    def isAnagram(self, s: str, t: str) -> bool:
+        d={}
+        for c in s:
+            cnt = d.get(c,0)
+            if cnt==0:
+                d[c]=1
+            else:
+                d[c]=d[c]+1
+        for c in t:
+            cnt = d.get(c,None)
+            if cnt:
+                d[c]=d[c]-1
+            else:
+                return False
+        dif = [y for x,y in d.items() if y!=0]
+        return False if len(dif) > 0 else True
