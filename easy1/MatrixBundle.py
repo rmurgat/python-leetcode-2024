@@ -213,3 +213,17 @@ class MatrixBundle:
         print ("d:",d)
 
         return
+    
+    # https://leetcode.com/problems/rotate-image/
+    def rotate(self, matrix: List[List[int]]) -> None:
+        N = len(matrix)
+        # Step 1: transpose the matrix
+        for i in range (N):
+            for j in range (i+1, N):
+                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+        
+        for row in matrix:
+            row.reverse()
+
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        pass

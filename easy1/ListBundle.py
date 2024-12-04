@@ -590,24 +590,6 @@ class ListBundle:
                     d[pos] = True
         return False
 
-    # https://leetcode.com/problems/merge-intervals/
-    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        intervals.sort(key=lambda x: x[0])
-        ans = []
-        toadd = intervals[0]
-        last = intervals[0]
-        for i in range(0, len(intervals)):
-            cur = intervals[i]
-            if cur[0] > toadd[1]:
-               toadd[1] = max(last[1],toadd[1])
-               ans.append(toadd)
-               toadd = cur
-            else:
-               toadd[1] = max(cur[1],toadd[1])
-            last = cur
-        ans.append(toadd)
-        return ans
-    
     # https://leetcode.com/problems/combination-sum/
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         anset = set()
@@ -753,12 +735,59 @@ class ListBundle:
 
         backtracking([],0,target)
         return answer
+    
+    def permuteUnique(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()
+        answer = set()
+        L = len(nums)
+
+        def backtracking(tmp: List):
+            if len(tmp)==L:
+                answer.add(tuple([nums[x] for x in tmp]))
+                return
+
+            for i in range(len(nums)):
+                if i>0 and nums[i]==nums[i-1]: continue
+                if i not in tmp:
+                    tmp.append(i)
+                    backtracking(tmp)
+                    tmp.pop()
+
+        backtracking([])
+        return [list(x) for x in answer]
+
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        d = {}
+        for s in strs:
+            ss = "".join(sorted(s))
+            located = d.get(ss,None)
+            if located:
+                d[ss].append(s)
+            else:
+                d[ss] = [s]
+        return [ x for x in d.values() ]
 
         
-                    
-
-        
-
+    def maxSubArray_0(self, nums: List[int]) -> int:
+        if len(nums) == 0: return 0
+        L = len(nums)
+        maxi = nums[0]
+        for i in range (0,L):
+            last = 0
+            for j in range (i, L):
+                if nums[j] + last > maxi:
+                    maxi = nums[j] + last
+                last = nums[j] + last
+        return maxi
+    
+    # Kadane's Algorithm - https://www.simplilearn.com/kadanes-algorithm-article
+    def maxSubArray_1(self, nums: List[int]) -> int:
+        max_so_far = nums[0]
+        max_ending_here = 0
+        for n in nums:
+            max_ending_here = max(n, n + max_ending_here)
+            max_so_far = max(max_so_far, max_ending_here)
+        return max_so_far  
 
 
     def rob(self, nums: List[int]) -> int:

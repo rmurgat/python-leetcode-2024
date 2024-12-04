@@ -6,6 +6,7 @@ from easy1.BinaryBundle import *
 from easy1.NumbersBundle import *
 from easy1.MatrixBundle import *
 from easy1.MyStack import *
+from easy1.IntervalBundle1 import *
 
 import math
 
@@ -522,7 +523,7 @@ def printJumpGame():
     print("Answer #5:", lib.canJump_2(large1))
 
 def printMergeIntervals():
-    lib = ListBundle()
+    lib = IntervalBundle1()
     print("Answer #1: ", lib.merge([[1,3],[2,6],[8,10],[15,18]]))
     print("Answer #2: ", lib.merge([[1,4],[4,5]]))
     print("Answer #3: ", lib.merge([[1,4],[2,3]]))
@@ -552,7 +553,66 @@ def printCombinationSumII():
     lib = ListBundle()
     print ("Answer #1 (no passing):", lib.combinationSum2_1([10,1,2,7,6,1,5],8))
     print ("Answer #1 (no passing):", lib.combinationSum2_2([10,1,2,7,6,1,5],8))
-    
+
+def printValidAnagram():
+    lib = StringBundle()
+    print ("Answer #1 (no passing):", lib.isAnagram("anagram", "nagaram"))
+
+def printBinaryTreePaths():
+    lib = BTreeBundle1()
+    head = lib.insertInOrder([1,2,3,None,5])
+    lib.prettyTree(head)
+    print ("Answer #1: ", lib.binaryTreePaths(head)) 
+    head = lib.insertInOrder([1])
+    print ("Answer #2: ", lib.binaryTreePaths(head)) 
+
+def printPermutationsII():
+    lib = ListBundle()
+    print ("Answer #1: ", lib.permuteUnique([1,1,2]))
+    print ("Answer #2: ", lib.permuteUnique([1,2,3]))
+
+def printRotateImage():
+    lib = MatrixBundle()
+    matrix = [ [1,2,3],[4,5,6],[7,8,9]]
+    lib.rotate(matrix)
+    print ("Answer #1:")
+    for row in matrix:
+        print (row)
+
+def printGroupAnagrams():
+    lib = ListBundle()
+    strs = ["eat","tea","tan","ate","nat","bat"]
+    print ("Answer #1: ", lib.groupAnagrams(strs))
+
+def printMaximumSubarray():
+    lib = ListBundle()
+    nums = [-2,1,-3,4,-1,2,1,-5,4]
+    print ("Answer #1 (time limit exceeded)", lib.maxSubArray_0(nums))
+    print ("Answer #2 (kadane)", lib.maxSubArray_1(nums))
+
+def printSpiralMatrix():
+    lib = MatrixBundle()
+    matrix = [[1,2,3],[4,5,6],[7,8,9]]
+    print ("Answer #1: ", lib.spiralOrder(matrix))
+
+    matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
+    print ("Answer #2: ", lib.spiralOrder(matrix))
+
+    matrix = [[6,9,7]]
+    print ("Answer #3: ", lib.spiralOrder(matrix))
+
+    matrix = [[3],[2]]
+    print ("Answer #4: ", lib.spiralOrder(matrix))
+
+    matrix = [[7],[9],[6]]
+    print ("Answer #5: ", lib.spiralOrder(matrix))
+
+    matrix = [[2,5,8],[4,0,-1]]
+    print ("Answer #6: ", lib.spiralOrder(matrix))
+
+
+
+
 
 def main():
     while True:
@@ -570,13 +630,13 @@ def main():
         print("11. Printing Depth Tree                        31. Summary Ranges (LC#228)                   51. Permutations (LC#46)")
         print("12. Path Sum I, II                             32. Is power of Two (LC#231)                  52. Combination Sum (LC#39)")
         print("13. Flatten Binary Tree to Linked List         33. Is Palindrome Linked List (LC#234)        53. Combination Sum II (LC#40)")
-        print("14. Generate Parentheses                       34. Lowest Common Ancestor of a BST (LC#235)")
-        print("15. Swap Nodes in Pairs                        35. Lowest Common Ancestor of a BT (LC#236)")
-        print("16. Generate Pascal Triangle I, II             36. Delete current Node @linkedList (LC#237)")
-        print("17. Excel Sheet Column Title                   37. Product of Array Except Self (LC#238)")
-        print("18. Mayority Element in List                   38. 4 Sum (LC#18)")
-        print("19. Excel Sheet Column Number                  39. Next Permutations (LC#31) ERROR!")
-        print("20. Integer to Binary Representation           40. Search in Rotated Sorted Array (LC#33)")
+        print("14. Generate Parentheses                       34. Lowest Common Ancestor of a BST (LC#235)  54. Valid Anagram (LC#242)")
+        print("15. Swap Nodes in Pairs                        35. Lowest Common Ancestor of a BT (LC#236)   55. Binary Tree Paths (LC#257)")
+        print("16. Generate Pascal Triangle I, II             36. Delete current Node @linkedList (LC#237)  56. Permutations II")
+        print("17. Excel Sheet Column Title                   37. Product of Array Except Self (LC#238)     57. Rotate Image (LC#48)")
+        print("18. Mayority Element in List                   38. 4 Sum (LC#18)                             58. Group Anagrams (LC#49)")
+        print("19. Excel Sheet Column Number                  39. Next Permutations (LC#31) ERROR!          59. Maximum Subarray (LC#53)")
+        print("20. Integer to Binary Representation           40. Search in Rotated Sorted Array (LC#33)    60. Spiral Matrix (LC#54) (no-solved)")
         print("")
         print("99. to Exit")
         x = int(input("Type option:"))
@@ -634,6 +694,13 @@ def main():
             case 51: printPermutations()
             case 52: printCombinationSum()
             case 53: printCombinationSumII()
+            case 54: printValidAnagram()
+            case 55: printBinaryTreePaths()
+            case 56: printPermutationsII()
+            case 57: printRotateImage()
+            case 58: printGroupAnagrams()
+            case 59: printMaximumSubarray()
+            case 60: printSpiralMatrix()
             case 99: exit()
 
 main()

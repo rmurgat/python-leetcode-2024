@@ -307,4 +307,21 @@ class BTreeBundle1:
             i+=1
 
         return path1[i-1]
+    
+    def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
+        answer = []
+        def inorder(head: Optional[TreeNode], tmp: List):
+            if head is None:
+                return
+            tmp.append(str(head.val))
+            if head.left is None and head.right is None:
+                answer.append("->".join(tmp))
+                tmp.pop()
+                return
+            inorder(head.left, tmp)
+            inorder(head.right, tmp)
+            tmp.pop()
+        inorder(root, [])
+        return answer
+
 
